@@ -1,4 +1,7 @@
-﻿using System;
+﻿using RogecnadClienAppRealNoWayNoWay.Models;
+using RogecnadClienAppRealNoWayNoWay.Pages;
+using RogecnadClienAppRealNoWayNoWay.Windows;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,7 +35,7 @@ namespace RogecnadClienAppRealNoWayNoWay
             timer.Interval = new TimeSpan(0, 0, 0, 0, 10);
             timer.Tick += Timer_Tick;
 
-
+            AppManager.mainFrame = this.MainFrame;
             panelWidth = sidePanel.Width;
         }
 
@@ -75,6 +78,37 @@ namespace RogecnadClienAppRealNoWayNoWay
         private void ExpandShortBtn_Click(object sender, RoutedEventArgs e)
         {
             timer.Start();
+        }
+
+        private void LogInButton_Click(object sender, RoutedEventArgs e)
+        {
+            AuthorizeWindow authWindow = new AuthorizeWindow();
+            authWindow.SillyFrame.Navigate(new LoginPage());
+            authWindow.Show();
+            this.Hide();
+        }
+
+        private void RegisterButton_Click(object sender, RoutedEventArgs e)
+        {
+            AuthorizeWindow authWindow = new AuthorizeWindow();
+            authWindow.SillyFrame.Navigate(new RegisterPage());
+            authWindow.Show();
+            this.Hide();
+        }
+
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            AppManager.mainFrame.Navigate(new PlaylistViewPage());
+        }
+
+        private void ChartsButton_Click(object sender, RoutedEventArgs e)
+        {
+            AppManager.mainFrame.Navigate(new LoginPage());
+        }
+
+        private void MainPageButton_Click(object sender, RoutedEventArgs e)
+        {
+            AppManager.mainFrame.Navigate(new MainPage());
         }
     }
 }

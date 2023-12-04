@@ -25,22 +25,22 @@
             </StackPanel>
             
             <StackPanel Grid.Column="1" Orientation="Horizontal" >
-                <Button Background="Transparent" BorderBrush="Transparent" Margin="25 0">
+                <Button Background="Transparent" BorderBrush="Transparent" Margin="25 0" Name="MainPageButton" Click="MainPageButton_Click">
                     <TextBlock Background="Transparent" Foreground="White" Width="100" Height="50" TextAlignment="Center"  FontSize="24">Главная</TextBlock>
                 </Button>
-                <Button Background="Transparent" BorderBrush="Transparent" Margin="25 0">
+                <Button Background="Transparent" BorderBrush="Transparent" Margin="25 0" Name="ChartsButton" Click="ChartsButton_Click">
                     <TextBlock Background="Transparent" Foreground="White"  Width="100" Height="50" TextAlignment="Center"  FontSize="24">Чарты</TextBlock>
                 </Button>
-                <Button Background="Transparent" BorderBrush="Transparent" Margin="25 0">
+                <Button Background="Transparent" BorderBrush="Transparent" Margin="25 0" Name="SearchButton" Click="SearchButton_Click">
                     <TextBlock Background="Transparent" Foreground="White" Width="100" Height="50" TextAlignment="Center"  FontSize="24">Поиск</TextBlock>
                 </Button>
             </StackPanel>
 
             <StackPanel Grid.Column="2" Name="RegisterAndAuthorizeStack" Orientation="Horizontal" Visibility="Visible">
-                <Button Background="Transparent" BorderBrush="Transparent" Margin="0 0 10 0">
+                <Button Background="Transparent" BorderBrush="Transparent" Margin="0 0 10 0" Name="LogInButton" Click="LogInButton_Click">
                     <TextBlock Background="Transparent" Foreground="White"  Width="100" Height="50" TextAlignment="Center" FontSize="24">Войти</TextBlock>
                 </Button>
-                <Button Background="Transparent" BorderBrush="Transparent">
+                <Button Background="Transparent" BorderBrush="Transparent" Name="RegisterButton" Click="RegisterButton_Click">
                     <TextBlock Background="{StaticResource ColorAccent}" Foreground="White" Width="180" TextAlignment="Center" Height="50" FontSize="24">Регистрация</TextBlock>
                 </Button>
             </StackPanel>
@@ -59,41 +59,43 @@
                             <ColumnDefinition/>
                             <ColumnDefinition Width="35"/>
                         </Grid.ColumnDefinitions>
-                         <Button Width="35" Grid.Column="1" HorizontalAlignment="Right" Background="Transparent" BorderBrush="Transparent" Name="ExpandShortBtn" Click="ExpandShortBtn_Click">
+                        <Button Width="35" Grid.Column="1" HorizontalAlignment="Right" Background="Transparent" BorderBrush="Transparent" Name="ExpandShortBtn" Click="ExpandShortBtn_Click">
                             <Image Source="/Resources/CircledArrowLeft.png" Name="IconExpandImage"/>
                         </Button>
                         <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" FontFamily="Comic Sans MS" FontSize="14" Foreground="White" BorderBrush="Transparent" Background="Transparent" FontWeight="Bold">
-                        <ListViewItem Height="30">
-                            <StackPanel Orientation="Horizontal">
-                                <Image Source="/Resources/PlaylistIcon.png" Height="30" VerticalAlignment="Center"/>
-                                <TextBlock Margin="20 0 0 0" Text="Плейлисты" VerticalAlignment="Center"/>
-                            </StackPanel>
-                        </ListViewItem>
-                        <ListViewItem Height="50" Background="{StaticResource ColorPrimaryBackground}" BorderBrush="Transparent">
-                            <StackPanel Orientation="Horizontal">
-                                <ListView Background="{StaticResource ColorPrimaryBackground}">
-                                    <ListViewItem Height="50" Width="250">
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="40"/>
-                                                <ColumnDefinition Width="auto"/>
-                                            </Grid.ColumnDefinitions>
-                                            <Image Source="/Resources/PlaceholderCover.jpg" Height="40" Width="40"/>
+                            <ListViewItem Height="30">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="/Resources/PlaylistIcon.png" Height="30" VerticalAlignment="Center"/>
+                                    <TextBlock Margin="20 0 0 0" Text="Плейлисты" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </ListViewItem>
+                            <ListViewItem Height="50" Background="{StaticResource ColorPrimaryBackground}" BorderBrush="Transparent">
+                                <StackPanel Orientation="Horizontal">
+                                    <ListView Background="{StaticResource ColorPrimaryBackground}">
+                                        <ListViewItem Height="50" Width="250">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="40"/>
+                                                    <ColumnDefinition Width="auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Image Source="/Resources/PlaceholderCover.jpg" Height="40" Width="40"/>
 
-                                            <StackPanel Grid.Column="1">
-                                                <TextBlock FontSize="14" Foreground="White" Text="PlaceholderPlaylist" />
-                                                <TextBlock FontSize="12" Foreground="White" Text="Треков: 0" />
-                                            </StackPanel>
-                                        </Grid>
-                                    </ListViewItem>
-                                </ListView>
-                            </StackPanel>
-                        </ListViewItem>
-                    </ListView>
+                                                <StackPanel Grid.Column="1">
+                                                    <TextBlock FontSize="14" Foreground="White" Text="PlaceholderPlaylist" />
+                                                    <TextBlock FontSize="12" Foreground="White" Text="Треков: 0" />
+                                                </StackPanel>
+                                            </Grid>
+                                        </ListViewItem>
+                                    </ListView>
+                                </StackPanel>
+                            </ListViewItem>
+                        </ListView>
                     </Grid>
                 </Border>
             </Grid>
-            
+
+            <Frame Name="MainFrame" Grid.Column="1" Grid.Row="1" />
+
         </Grid>
     </Grid>
 </Window>
