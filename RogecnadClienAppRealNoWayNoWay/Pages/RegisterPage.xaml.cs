@@ -85,5 +85,7 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages
                 return true;
             return false;
         }
+
+
     }
 }

@@ -35,6 +35,7 @@ namespace RogecnadClienAppRealNoWayNoWay
             timer.Interval = new TimeSpan(0, 0, 0, 0, 10);
             timer.Tick += Timer_Tick;
 
+            AppManager.mainWindow = this;
             AppManager.mainFrame = this.MainFrame;
             panelWidth = sidePanel.Width;
         }
