@@ -4,6 +4,32 @@
              xmlns:local="clr-namespace:RogecnadClienAppRealNoWayNoWay"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <SolidColorBrush x:Key="ColorAccentBackground">
+            <SolidColorBrush.Color>
+                <Color
+            A="255"
+            R="23"
+            G="23"
+            B="23" />
+            </SolidColorBrush.Color>
+        </SolidColorBrush>
+        <SolidColorBrush x:Key="ColorPrimaryBackground">
+            <SolidColorBrush.Color>
+                <Color
+            A="255"
+            R="31"
+            G="31"
+            B="31" />
+            </SolidColorBrush.Color>
+        </SolidColorBrush>
+        <SolidColorBrush x:Key="ColorAccent">
+            <SolidColorBrush.Color>
+                <Color
+            A="255"
+            R="118"
+            G="37"
+            B="66" />
+            </SolidColorBrush.Color>
+        </SolidColorBrush>
     </Application.Resources>
 </Application>

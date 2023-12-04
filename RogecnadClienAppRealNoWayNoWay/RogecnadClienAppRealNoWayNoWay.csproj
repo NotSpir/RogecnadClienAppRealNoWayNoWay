@@ -94,5 +94,18 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Rogecnad.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\CircledArrowLeft.png" />
+    <Resource Include="Resources\CircledArrowRight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\PlaylistIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\PlaceholderCover.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
