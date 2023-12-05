@@ -17,7 +17,7 @@ namespace RogecnadClienAppRealNoWayNoWay.Models
             
             try
             {
-                /*await*/ FirebaseAuthModel.client.CreateUserWithEmailAndPasswordAsync(email, password, username);
+                await FirebaseAuthModel.client.CreateUserWithEmailAndPasswordAsync(email, password, username);
             }
             catch (Exception ex)
             {
