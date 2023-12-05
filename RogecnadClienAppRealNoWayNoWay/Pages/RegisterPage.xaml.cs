@@ -37,8 +37,20 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages
         {
             string username = LoginTextBox.Text;
             string email = EmailTextBox.Text;
-            string password = PasswordTextBox.Password;
+            string password = PasswordBoxPass.Password;
             string err = "";
+            if (string.IsNullOrWhiteSpace(username))
+            {
+                err += "Не введен логин!\n";
+            }
+            if (string.IsNullOrWhiteSpace(email))
+            {
+                err += "Не введена почта!\n";
+            }
+            if (string.IsNullOrWhiteSpace(password))
+            {
+                err += "Не введен пароль!\n";
+            }
             if (!email.Contains('@'))
             {
                 err += "Введена ненастоящая почта!\n";
@@ -51,33 +63,13 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages
                 return;
             }
 
-            string status = Register(email, password, username).Result;
+            string status = RegisterLoginModel.Register(email, password, username).Result;
             MessageBox.Show(status);
             if (status == "Учетная запись успешно создана")
             {
                 NavigationService.Navigate(new LoginPage());
             }
         }
-
-        async Task<string> Register(string email, string password, string username)
-        {
-            FirebaseAuthProvider firebaseAuthProvider = new FirebaseAuthProvider(new FirebaseConfig(AppManager.API_KEY));
-            try
-            {
-
-                FirebaseAuthLink firebaseAuthLink = await firebaseAuthProvider.CreateUserWithEmailAndPasswordAsync(email, password, username);
-            }
-            catch (Exception ex)
-            {
-                if (ex.Message.Contains("EMAIL_EXISTS"))
-                    return "Учетная запись с данной почтой уже существует";
-                else
-                    return "Что-то пошло не так. Забейте того, кто писал бэкенд тапком, если этот придурок умудрился неверно написать регистрацию.";
-            }
-            return "Учетная запись успешно создана";
-        }
-
-
 
         bool IsCorrectPassword(string text)
         {
@@ -86,6 +78,30 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages
             return false;
         }
 
+        private void DisplayPasswordButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (PasswordTextBox.Visibility == Visibility.Visible)
+            {
+                PasswordTextBox.Visibility = Visibility.Collapsed;
+                PasswordBoxPass.Visibility = Visibility.Visible;
+                PasswordHideShowImage.Source = new BitmapImage(new Uri(@"/Resources/ClosedEyeIcon.png", UriKind.Relative));
+            }
+            else if (PasswordTextBox.Visibility == Visibility.Collapsed)
+            {
+                PasswordTextBox.Visibility = Visibility.Visible;
+                PasswordBoxPass.Visibility = Visibility.Collapsed;
+                PasswordHideShowImage.Source = new BitmapImage(new Uri(@"/Resources/EyeIcon.png", UriKind.Relative));
+            }
+        }
 
+        private void PasswordBoxPass_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            PasswordTextBox.Text = PasswordBoxPass.Password;
+        }
+
+        private void PasswordTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            PasswordBoxPass.Password = PasswordTextBox.Text;
+        }
     }
 }

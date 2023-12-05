@@ -33,22 +33,6 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages
             NavigationService.Navigate(new RegisterPage());
         }
 
-        async Task<string> SignInAsync(string email, string password)
-        {
-            try
-            {
-                FirebaseAuthProvider firebaseAuthProvider = new FirebaseAuthProvider(new FirebaseConfig(AppManager.API_KEY));
-
-                FirebaseAuthLink firebaseAuthLink = await firebaseAuthProvider.SignInWithEmailAndPasswordAsync(email, password);
-
-                return firebaseAuthLink.FirebaseToken.ToString();
-            }
-            catch
-            {
-                MessageBox.Show("Что-то пошло не так при аутентификации. Повторите попытку позже");
-                return null;
-            }
-        }
 
         private void LogInButton_Click(object sender, RoutedEventArgs e)
         {
@@ -56,7 +40,7 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages
             string password = PasswordBoxPassword.Password;
             try
             {
-                AppManager.token = SignInAsync(email, password).Result;
+                AppManager.token = RegisterLoginModel.SignInAsync(email, password).Result;
             }
             catch (Exception ex)
             {

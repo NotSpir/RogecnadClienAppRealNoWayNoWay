@@ -1,4 +1,5 @@
-﻿using RogecnadClienAppRealNoWayNoWay.Windows;
+﻿using Firebase.Auth;
+using RogecnadClienAppRealNoWayNoWay.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,6 @@ namespace RogecnadClienAppRealNoWayNoWay.Models
 {
     internal class AppManager
     {
-        public const string API_KEY = "AIzaSyA5Xnx8ofgxs8VHQ6IM8FJnhX-7MWCXdVg";
         public static string token = null;
 
 

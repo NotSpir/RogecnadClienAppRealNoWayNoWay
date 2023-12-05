@@ -40,9 +40,12 @@
                 <StackPanel>
                     <TextBlock Text="Пароль" Foreground="White" Width="250" TextAlignment="Left" Height="30" FontSize="22"/>
                     <StackPanel Orientation="Horizontal">
-                        <PasswordBox Margin="50 0 0 40" Background="{StaticResource ColorPrimaryBackground}" Name="PasswordTextBox" Width="250" Height="40" Foreground="White" FontSize="18"/>
-                        <Button Background="Transparent" BorderBrush="Transparent">
-                            <Image Source="/Resources/ClosedEyeIcon.png" Width="40"/>
+                        <PasswordBox Margin="50 0 0 40" Visibility="Visible" Background="{StaticResource ColorPrimaryBackground}" Name="PasswordBoxPass" 
+                                     Width="250" Height="40" Foreground="White" FontSize="18" PasswordChanged="PasswordBoxPass_PasswordChanged"/>
+                        <TextBox Margin="50 0 0 40" Visibility="Collapsed" Background="{StaticResource ColorPrimaryBackground}" Name="PasswordTextBox" 
+                                 Width="250" Height="40" Foreground="White" FontSize="18" TextChanged="PasswordTextBox_TextChanged"/>
+                        <Button  Margin="0 0 0 40" Background="Transparent" BorderBrush="Transparent" Name="DisplayPasswordButton" Click="DisplayPasswordButton_Click">
+                            <Image Source="/Resources/ClosedEyeIcon.png" Width="40" Name="PasswordHideShowImage"/>
                         </Button>
                     </StackPanel>
                 </StackPanel>
