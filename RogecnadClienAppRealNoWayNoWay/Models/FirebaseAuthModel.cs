@@ -17,7 +17,7 @@ namespace RogecnadClienAppRealNoWayNoWay.Models
             FirebaseAuthConfig config = new FirebaseAuthConfig
             {
                 ApiKey = "AIzaSyA5Xnx8ofgxs8VHQ6IM8FJnhX-7MWCXdVg",
-                AuthDomain = "<DOMAIN>.firebaseapp.com",
+                AuthDomain = "rogecnad.firebaseapp.com",
                 Providers = new FirebaseAuthProvider[]
                 {
                     // Add and configure individual providers
