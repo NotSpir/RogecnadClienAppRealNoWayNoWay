@@ -333,6 +333,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Pages\AlbumUploadPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\LoginPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -370,8 +374,19 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\AppManager.cs" />
+    <Compile Include="Models\DataModels\Album.cs" />
+    <Compile Include="Models\DataModels\Genre.cs" />
+    <Compile Include="Models\DataModels\Playlist.cs" />
+    <Compile Include="Models\DataModels\Role.cs" />
+    <Compile Include="Models\DataModels\SoundTrack.cs" />
+    <Compile Include="Models\DataModels\TracksAlbums.cs" />
+    <Compile Include="Models\DataModels\TracksPlaylist.cs" />
+    <Compile Include="Models\DataModels\User.cs" />
     <Compile Include="Models\FirebaseAuthModel.cs" />
     <Compile Include="Models\RegisterLoginModel.cs" />
+    <Compile Include="Pages\AlbumUploadPage.xaml.cs">
+      <DependentUpon>AlbumUploadPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
