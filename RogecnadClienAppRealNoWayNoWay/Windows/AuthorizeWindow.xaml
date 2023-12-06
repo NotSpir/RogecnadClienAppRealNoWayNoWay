@@ -7,6 +7,6 @@
         mc:Ignorable="d"
         Title="Окно авторизации" Height="450" Width="800">
     <Grid Background="{StaticResource ColorPrimaryBackground}">
-        <Frame Name="SillyFrame"/>
+        <Frame NavigationUIVisibility="Hidden" Name="SillyFrame"/>
     </Grid>
 </Window>

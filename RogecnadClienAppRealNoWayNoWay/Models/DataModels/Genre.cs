@@ -8,7 +8,7 @@ namespace RogecnadClienAppRealNoWayNoWay.Models.DatabaseModels
 {
     internal class Genre
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string GenreName { get; set; }
     }
 }

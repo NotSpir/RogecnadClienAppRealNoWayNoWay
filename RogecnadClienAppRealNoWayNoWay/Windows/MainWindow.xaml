@@ -94,7 +94,7 @@
                 </Border>
             </Grid>
 
-            <Frame Name="MainFrame" Grid.Column="1" Grid.Row="1" />
+            <Frame NavigationUIVisibility="Hidden" Name="MainFrame" Grid.Column="1" Grid.Row="1" />
 
         </Grid>
     </Grid>

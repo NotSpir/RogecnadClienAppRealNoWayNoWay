@@ -1,5 +1,6 @@
 ﻿using Firebase.Auth;
 using Firebase.Auth.Providers;
+using FireSharp;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -39,7 +40,16 @@ namespace RogecnadClienAppRealNoWayNoWay
 
         protected override async void OnStartup(StartupEventArgs e)
         {
-            
+
+            try
+            {
+                FirebaseClientModel.client = new FireSharp.FirebaseClient(FirebaseClientModel.firebaseConfig);
+            }
+            catch
+            {
+                MessageBox.Show("Отсутствует подключение к интернету. Попробуйте зайти позже");
+                Application.Current.Shutdown();
+            }
             MainWindow = _host.Services.GetRequiredService<MainWindow>();
             MainWindow.Show();
 

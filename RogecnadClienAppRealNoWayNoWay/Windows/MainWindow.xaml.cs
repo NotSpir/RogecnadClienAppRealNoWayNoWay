@@ -1,5 +1,6 @@
 ﻿using RogecnadClienAppRealNoWayNoWay.Models;
 using RogecnadClienAppRealNoWayNoWay.Pages;
+using RogecnadClienAppRealNoWayNoWay.Pages.DataViewPages;
 using RogecnadClienAppRealNoWayNoWay.Windows;
 using System;
 using System.Collections.Generic;
@@ -104,7 +105,7 @@ namespace RogecnadClienAppRealNoWayNoWay
 
         private void ChartsButton_Click(object sender, RoutedEventArgs e)
         {
-            AppManager.mainFrame.Navigate(new LoginPage());
+            AppManager.mainFrame.Navigate(new GenreViewPage());
         }
 
         private void MainPageButton_Click(object sender, RoutedEventArgs e)
