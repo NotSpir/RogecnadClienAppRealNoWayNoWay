@@ -1,4 +1,7 @@
-﻿using RogecnadClienAppRealNoWayNoWay.Pages.DataEditPages;
+﻿using Newtonsoft.Json;
+using RogecnadClienAppRealNoWayNoWay.Models;
+using RogecnadClienAppRealNoWayNoWay.Models.DatabaseModels;
+using RogecnadClienAppRealNoWayNoWay.Pages.DataEditPages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,9 +24,11 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages.DataViewPages
     /// </summary>
     public partial class GenreViewPage : Page
     {
+        List<Genre> genreList = new List<Genre>();
         public GenreViewPage()
         {
             InitializeComponent();
+            GetTableData();
         }
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
@@ -44,6 +49,18 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages.DataViewPages
         private void TBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
 
+        }
+
+        private void GetTableData()
+        {
+            var result = FirebaseClientModel.client.Get("Genres");
+            Dictionary<string, Genre> getGenres = result.ResultAs<Dictionary<string, Genre>>();
+            foreach (var item in getGenres)
+            {
+                var genre = new Genre() { Id = item.Value.Id, GenreName = item.Value.GenreName };
+                genreList.Add(genre);
+            }
+            LViewData.ItemsSource = genreList;
         }
     }
 }
