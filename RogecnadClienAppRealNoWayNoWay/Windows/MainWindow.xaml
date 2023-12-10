@@ -29,7 +29,7 @@
                     <TextBlock Background="Transparent" Foreground="White" Width="100" Height="50" TextAlignment="Center"  FontSize="24">Главная</TextBlock>
                 </Button>
                 <Button Background="Transparent" BorderBrush="Transparent" Margin="25 0" Name="ChartsButton" Click="ChartsButton_Click">
-                    <TextBlock Background="Transparent" Foreground="White"  Width="100" Height="50" TextAlignment="Center"  FontSize="24">Чарты</TextBlock>
+                    <TextBlock Background="Transparent" Foreground="White"  Width="100" Height="50" TextAlignment="Center"  FontSize="24">Кнопка, которую я тыкаю, когда надо тестить</TextBlock>
                 </Button>
                 <Button Background="Transparent" BorderBrush="Transparent" Margin="25 0" Name="SearchButton" Click="SearchButton_Click">
                     <TextBlock Background="Transparent" Foreground="White" Width="100" Height="50" TextAlignment="Center"  FontSize="24">Поиск</TextBlock>

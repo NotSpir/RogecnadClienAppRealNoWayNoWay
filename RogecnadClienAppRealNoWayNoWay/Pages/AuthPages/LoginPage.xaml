@@ -9,9 +9,10 @@
       Title="LoginPage">
 
     <Grid>
-        <Grid Width="350" Height="600" Background="{StaticResource ColorBackgroundFade}" Margin="0 0 60 40" />
-        <Grid Width="350" Height="600" Background="{StaticResource ColorAccentBackground}">
-            <Grid.RowDefinitions>
+        <Border Width="350" Height="600" Background="{StaticResource ColorBackgroundFade}" Margin="0 0 60 40" CornerRadius="45" />
+        <Border Width="350" Height="600" Background="{StaticResource ColorAccentBackground}" CornerRadius="45">
+            <Grid>
+                <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="20" />
                 <RowDefinition Height="400" />
@@ -75,6 +76,7 @@
                     <TextBlock Foreground="White" Width="185" TextAlignment="Center" Height="50" FontSize="18" TextDecorations="Underline">Зарегистрироваться</TextBlock>
                 </Button>
             </StackPanel>
-        </Grid>
+            </Grid>
+        </Border>
     </Grid>
 </Page>

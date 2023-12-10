@@ -39,5 +39,12 @@
             B="42" />
             </SolidColorBrush.Color>
         </SolidColorBrush>
+        <Style TargetType="Slider" >
+            <Setter Property="Stylus.IsPressAndHoldEnabled" Value="False" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{StaticResource ColorAccent}" />
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        </Style>
     </Application.Resources>
 </Application>

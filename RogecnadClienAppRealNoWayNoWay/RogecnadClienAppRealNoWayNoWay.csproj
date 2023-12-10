@@ -353,7 +353,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Pages\AlbumUploadPage.xaml">
+    <Page Include="Pages\DataEditPages\AlbumUploadPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -365,7 +365,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\LoginPage.xaml">
+    <Page Include="Pages\AuthPages\LoginPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -373,15 +373,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\PlaylistViewPage.xaml">
+    <Page Include="Pages\DataViewPages\PlaylistViewPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\RegisterPage.xaml">
+    <Page Include="Pages\AuthPages\RegisterPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\SongAddEditPage.xaml">
+    <Page Include="Pages\DataEditPages\SongAddEditPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -402,8 +402,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\AppManager.cs" />
+    <Compile Include="Models\AudioPlayer.cs" />
     <Compile Include="Models\DataModels\Album.cs" />
     <Compile Include="Models\DataModels\Genre.cs" />
+    <Compile Include="Models\DataModels\PlayingTracks.cs" />
     <Compile Include="Models\DataModels\Playlist.cs" />
     <Compile Include="Models\DataModels\Role.cs" />
     <Compile Include="Models\DataModels\SoundTrack.cs" />
@@ -412,8 +414,9 @@
     <Compile Include="Models\DataModels\User.cs" />
     <Compile Include="Models\FirebaseAuthModel.cs" />
     <Compile Include="Models\FirebaseClientModel.cs" />
+    <Compile Include="Models\RandomIdGenerator.cs" />
     <Compile Include="Models\RegisterLoginModel.cs" />
-    <Compile Include="Pages\AlbumUploadPage.xaml.cs">
+    <Compile Include="Pages\DataEditPages\AlbumUploadPage.xaml.cs">
       <DependentUpon>AlbumUploadPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\DataEditPages\GenreAddEditPage.xaml.cs">
@@ -422,19 +425,19 @@
     <Compile Include="Pages\DataViewPages\GenreViewPage.xaml.cs">
       <DependentUpon>GenreViewPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\LoginPage.xaml.cs">
+    <Compile Include="Pages\AuthPages\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\PlaylistViewPage.xaml.cs">
+    <Compile Include="Pages\DataViewPages\PlaylistViewPage.xaml.cs">
       <DependentUpon>PlaylistViewPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\RegisterPage.xaml.cs">
+    <Compile Include="Pages\AuthPages\RegisterPage.xaml.cs">
       <DependentUpon>RegisterPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\SongAddEditPage.xaml.cs">
+    <Compile Include="Pages\DataEditPages\SongAddEditPage.xaml.cs">
       <DependentUpon>SongAddEditPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\AudioPlayerWindow.xaml.cs">
@@ -491,7 +494,10 @@
   <ItemGroup>
     <Resource Include="Resources\PlaceholderCover.jpg" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\PlayButton.png" />
+    <Resource Include="Resources\StopButton.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\ArrowLeft.png" />
   </ItemGroup>
@@ -500,6 +506,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\ClosedEyeIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\VolumeButton.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets')" />

@@ -19,5 +19,7 @@ namespace RogecnadClienAppRealNoWayNoWay.Models
         public static AudioPlayerWindow audioWindow = new AudioPlayerWindow();
 
         public static Frame mainFrame = new Frame();
+
+        public static double SongVolume = 10;
     }
 }

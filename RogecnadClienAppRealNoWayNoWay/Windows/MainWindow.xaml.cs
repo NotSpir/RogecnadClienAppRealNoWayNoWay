@@ -38,6 +38,7 @@ namespace RogecnadClienAppRealNoWayNoWay
 
             AppManager.mainWindow = this;
             AppManager.mainFrame = this.MainFrame;
+            AppManager.mainFrame.Navigate(new MainPage());
             panelWidth = sidePanel.Width;
         }
 
@@ -105,7 +106,7 @@ namespace RogecnadClienAppRealNoWayNoWay
 
         private void ChartsButton_Click(object sender, RoutedEventArgs e)
         {
-            AppManager.mainFrame.Navigate(new GenreViewPage());
+            AppManager.mainFrame.Navigate(new SongAddEditPage());
         }
 
         private void MainPageButton_Click(object sender, RoutedEventArgs e)

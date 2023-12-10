@@ -5,10 +5,57 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:RogecnadClienAppRealNoWayNoWay.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="1000" d:DesignWidth="1800"
+      
       Title="MainPage">
 
     <Grid>
+        <ListView Grid.Row="1" Name="LViewMainSongs" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center" Background="Transparent">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left"></WrapPanel>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <EventSetter Event="MouseDoubleClick" Handler="ListViewItem_MouseDoubleClick" />
+
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Border Width="220" Height="300" Background="{StaticResource ColorBackgroundFade}" Margin="0 0 60 40" CornerRadius="45" />
+                        <Border Width="220" Height="300" Background="{StaticResource ColorAccentBackground}" Margin="25" CornerRadius="45">
+                        <StackPanel x:Name="MediaPlayerStack">
+                            <Image Width="150" Height="150" Margin="5" Name="imageCover" Source="{Binding GetCoverImage}">
+                            </Image>
+                            <TextBlock Text="{Binding TrackName}" Foreground="White" FontSize="16" TextAlignment="Center" Name="songnameTextBlock"/>
+                            <Button Background="Transparent" BorderBrush="Transparent" Margin="0" Name="ChannelBtn" Click="ChannelBtn_Click">
+                                <TextBlock Foreground="LightGray" Width="200" TextAlignment="Center" Height="20" FontSize="12" Text="{Binding UploaderId}"></TextBlock>
+                            </Button>
+
+                            <Line Stretch="Fill" Stroke="{StaticResource ColorAccent}" Grid.Row="3" StrokeThickness="4" X2="1" Width="200" Margin="0 0 0 10"/>
+
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Button x:Name="playButton" Click="PlayButton_Click" Width="30" Height="30" Foreground="White" Background="{StaticResource ColorAccent}" BorderBrush="Transparent">
+                                    <Image Source="/Resources/PlayButton.png" />
+                                </Button>
+                                <Slider Name="audioSlider" IsSelectionRangeEnabled="True" Width="150" Value="0" VerticalAlignment="Center" ValueChanged="audioSlider_ValueChanged" />
+
+                                <Button x:Name="volumeButton" Click="volumeButton_Click" Width="30" Height="30" Foreground="White" Background="Transparent" BorderBrush="Transparent">
+                                    <Image Source="/Resources/VolumeButton.png" />
+                                </Button>
+                            </StackPanel>
+
+                            <TextBlock Text="00:00 / 00:00" Foreground="White" FontSize="16" TextAlignment="Center" Name="timeDisplayTextBlock"/>
+                        </StackPanel>
+                    </Border>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        
         
     </Grid>
 </Page>
