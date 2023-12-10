@@ -32,11 +32,11 @@
             <StackPanel Grid.Row="2">
                 <StackPanel Margin="0 0 0 10">
                     <TextBlock Text="Название трека" Foreground="White" Width="250" TextAlignment="Left" Height="30" FontSize="22"/>
-                    <TextBox Background="{StaticResource ColorPrimaryBackground}" Width="250" Name="TitleTextBox" Height="40" Foreground="White" FontSize="18" />
+                    <TextBox Background="{StaticResource ColorPrimaryBackground}" Width="250" Name="TitleTextBox" Height="40" Foreground="White" FontSize="18" TextChanged="TitleTextBox_TextChanged"/>
                 </StackPanel>
                 <StackPanel Margin="0 0 0 10">
                     <TextBlock Text="Жанр" Foreground="White" Width="250" TextAlignment="Left" Height="30" FontSize="22"/>
-                    <ComboBox Background="{StaticResource ColorPrimaryBackground}" Width="250" Name="GenreComboBox" DisplayMemberPath="GenreName" Height="40" Foreground="Black" FontSize="18" />
+                    <ComboBox Background="{StaticResource ColorPrimaryBackground}" Width="250" Name="GenreComboBox" DisplayMemberPath="GenreName" Height="40" Foreground="Black" FontSize="18" SelectionChanged="GenreComboBox_SelectionChanged" />
                 </StackPanel>
                 <StackPanel Margin="0 0 0 20">
                     <TextBlock Text="Загрузить mp3 файл" Foreground="White" Width="250" TextAlignment="Left" Height="30" FontSize="22"/>
@@ -47,15 +47,16 @@
                     <Image Width="200" Height="200" Margin="10" Name="imageCover"/>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <Button x:Name="playButton" Click="PlayButton_Click" Width="30" Height="30" Foreground="White" Background="{StaticResource ColorAccent}" BorderBrush="Transparent">
-                            <Image Source="/Resources/PlayButton.png" />
+                            <Image Name="imagePlayButton"  Source="/Resources/PlayButton.png" />
                         </Button>
-                        <Slider Name="audioSlider" IsSelectionRangeEnabled="True" Width="270" Value="0" VerticalAlignment="Center" ValueChanged="audioSlider_ValueChanged" />
-                    </StackPanel>
+                            <Slider Name="audioSlider" IsSelectionRangeEnabled="True" Width="270" Value="0" VerticalAlignment="Center" ValueChanged="audioSlider_ValueChanged" />
+
+                        </StackPanel>
                     
                     <TextBlock Text="00:00 / 00:00" Foreground="White" FontSize="16" TextAlignment="Center" Name="timeDisplayTextBlock"/>
                 </StackPanel>
 
-                <Button Height="50" Width="250" Background="{StaticResource ColorAccent}" Margin="0 30 0 0" Content="Загрузить" Foreground="White" FontSize="26" Name="UploadButton" Click="UploadButton_Click">
+                <Button IsEnabled="False" Height="50" Width="250" Background="{StaticResource ColorAccent}" Margin="0 30 0 0" Content="Загрузить" Foreground="White" FontSize="26" Name="UploadButton" Click="UploadButton_Click">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="15"></Setter>

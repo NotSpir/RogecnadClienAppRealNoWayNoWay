@@ -43,6 +43,7 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages
         {
             InitializeComponent();
             GetGenreData();
+            CheckReady();
         }
 
         private void uploadSongButton_Click(object sender, RoutedEventArgs e)
@@ -53,15 +54,18 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages
             {
                 if (IsPlaying)
                 {
+                    imagePlayButton.Source = new BitmapImage(new Uri(@"/Resources/PlayButton.png", UriKind.Relative));
                     AudioPlayer.Stop(AudioPlayer.soundPlayer);
-                    currentTime = new TimeSpan(0);
                 }
+                AudioPlayer.soundPlayer.Position = new TimeSpan(0);
+                currentTime = new TimeSpan(0);
                 mediaFilePath = ofd.FileName;
                 AudioPlayer.soundPlayer = AudioPlayer.InitializePlayer(mediaFilePath);
                 duration = AudioPlayer.GetMediaDuration(mediaFilePath, TimeSpan.FromMilliseconds(20000));
                 duration = AudioPlayer.StripMilliseconds(duration);
                 timeDisplayTextBlock.Text = $"{AudioPlayer.soundPlayer.Position}/{duration}";
                 MediaPlayerStack.Visibility = Visibility.Visible;
+                CheckReady();
             }
 
         }
@@ -73,31 +77,39 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages
             {
                 coverImageFilePath = ofd.FileName;
                 imageCover.Source = new BitmapImage(new Uri(coverImageFilePath));
+                CheckReady();
             }
         }
 
         private void UploadButton_Click(object sender, RoutedEventArgs e)
         {
             string pushID = RandomIdGenerator.GeneratePushID();
-            Byte[] bytes = File.ReadAllBytes(mediaFilePath);
-            String file = Convert.ToBase64String(bytes);
-            tracks.ID = pushID;
-            tracks.trackBytes = file;
-            FirebaseClientModel.client.Set("TrackFiles/" + tracks.ID, tracks);
-            MessageBox.Show("Трек загружен");
 
-            soundTrack.Id = pushID;
-            soundTrack.TrackName = TitleTextBox.Text;
+            try
+            {
 
-            string genreID = genreList.Where(x => x.GenreName == GenreComboBox.Text).FirstOrDefault().Id;
-            soundTrack.GenreId = genreID;
-            Byte[] bytesCover = File.ReadAllBytes(coverImageFilePath);
-            String fileCover = Convert.ToBase64String(bytesCover);
-            soundTrack.TrackCoverBytes = fileCover;
-            soundTrack.UploaderId = "rvdIy0Rnw4Xq0VWV18aPw5eXHwr1";
-            FirebaseClientModel.client.Set("Soundtracks/" + soundTrack.Id, soundTrack);
-            MessageBox.Show("Трек загружен");
 
+                Byte[] bytes = File.ReadAllBytes(mediaFilePath);
+                String file = Convert.ToBase64String(bytes);
+                tracks.ID = pushID;
+                tracks.trackBytes = file;
+                FirebaseClientModel.client.Set("TrackFiles/" + tracks.ID, tracks);
+                soundTrack.Id = pushID;
+                soundTrack.TrackName = TitleTextBox.Text;
+
+                string genreID = genreList.Where(x => x.GenreName == GenreComboBox.Text).FirstOrDefault().Id;
+                soundTrack.GenreId = genreID;
+                Byte[] bytesCover = File.ReadAllBytes(coverImageFilePath);
+                String fileCover = Convert.ToBase64String(bytesCover);
+                soundTrack.TrackCoverBytes = fileCover;
+                soundTrack.UploaderId = "rvdIy0Rnw4Xq0VWV18aPw5eXHwr1";
+                FirebaseClientModel.client.Set("Soundtracks/" + soundTrack.Id, soundTrack);
+                MessageBox.Show("Трек загружен");
+            }
+            catch
+            {
+                MessageBox.Show("Что-то пошло не так при загрузке аудио", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void ExitCompactBtn_Click(object sender, RoutedEventArgs e)
@@ -115,6 +127,7 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages
             if (IsPlaying)
             {
                 IsPlaying = false;
+                imagePlayButton.Source = new BitmapImage(new Uri(@"/Resources/PlayButton.png", UriKind.Relative));
                 currentTime = AudioPlayer.StripMilliseconds(AudioPlayer.soundPlayer.Position);
                 timeDisplayTextBlock.Text = $"{currentTime}/{duration}";
                 AudioPlayer.Stop(AudioPlayer.soundPlayer);
@@ -122,6 +135,7 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages
             else
             {
                 IsPlaying = true;
+                imagePlayButton.Source = new BitmapImage(new Uri(@"/Resources/StopButton.png", UriKind.Relative));
                 AudioPlayer.Play(AudioPlayer.soundPlayer, currentTime);
                 ChangeTimeValuesAsync();
             }
@@ -161,6 +175,21 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages
                 catch { }
             });
             thread.Start();
+        }
+
+        private void CheckReady()
+        {
+            if (!string.IsNullOrWhiteSpace(TitleTextBox.Text) && !string.IsNullOrWhiteSpace(GenreComboBox.Text) && !string.IsNullOrWhiteSpace(mediaFilePath) && !string.IsNullOrWhiteSpace(coverImageFilePath))
+                UploadButton.IsEnabled = true;
+        }
+        private void TitleTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CheckReady();
+        }
+
+        private void GenreComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            CheckReady();
         }
     }
 }
