@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RogecnadClienAppRealNoWayNoWay.Models.DatabaseModels
 {
-    internal class User
+    internal class ClientUser
     {
         public string Id { get; set; }
         public string Login { get; set; }

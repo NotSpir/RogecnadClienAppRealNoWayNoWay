@@ -8,7 +8,7 @@ namespace RogecnadClienAppRealNoWayNoWay.Models.DatabaseModels
 {
     internal class TracksPlaylist
     {
-        public int PlaylistId { get; set; }
-        public List<int> TrackIds { get; set; }
+        public string PlaylistId { get; set; }
+        public string TrackId { get; set; }
     }
 }

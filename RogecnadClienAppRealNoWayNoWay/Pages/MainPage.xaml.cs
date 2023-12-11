@@ -29,10 +29,19 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages
         string directory = System.IO.Path.GetFullPath(AppDomain.CurrentDomain.BaseDirectory);
         MediaPlayer soundPlayer = new MediaPlayer();
         bool IsPlaying = false;
+        List<Playlist> playlists = new List<Playlist>();
         public MainPage()
         {
             InitializeComponent();
             GetTableData();
+            var result = FirebaseClientModel.client.Get("Playlists");
+            Dictionary<string, Playlist> getTracks = result.ResultAs<Dictionary<string, Playlist>>();
+            foreach (var item in getTracks)
+            {
+                var val = new Playlist() { Id = item.Value.Id, PlaylistName = item.Value.PlaylistName, CreatorId = item.Value.CreatorId };
+                playlists.Add(val);
+            }
+            playlists = playlists.Where(x => x.CreatorId == AppManager.currentUser.Id).ToList();
         }
 
         private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -107,12 +116,21 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages
                     while (true)
                         while (IsPlaying)
                         {
-                            
+
                         }
                 }
                 catch { }
             });
             thread.Start();
+        }
+
+        private void moreButton_Click(object sender, RoutedEventArgs e)
+        {
+            Playlist playlist = playlists.FirstOrDefault();
+            string trackID = ((sender as Button).DataContext as SoundTrack).Id;
+            TracksPlaylist tracksPlaylist = new TracksPlaylist() { PlaylistId = playlist.Id, TrackId = trackID };
+            FirebaseClientModel.client.Set("PlaylistsTracks/" + playlist.Id, tracksPlaylist);
+            MessageBox.Show($"Добавлено в плейлист {playlist.PlaylistName}", "Успех", MessageBoxButton.OK, MessageBoxImage.None);
         }
     }
 }

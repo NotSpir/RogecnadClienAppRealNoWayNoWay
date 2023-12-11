@@ -1,5 +1,7 @@
 ﻿using RogecnadClienAppRealNoWayNoWay.Models;
+using RogecnadClienAppRealNoWayNoWay.Models.DatabaseModels;
 using RogecnadClienAppRealNoWayNoWay.Pages;
+using RogecnadClienAppRealNoWayNoWay.Pages.DataEditPages;
 using RogecnadClienAppRealNoWayNoWay.Pages.DataViewPages;
 using RogecnadClienAppRealNoWayNoWay.Windows;
 using System;
@@ -25,6 +27,9 @@ namespace RogecnadClienAppRealNoWayNoWay
     /// </summary>
     public partial class MainWindow : Window
     {
+        List<PlaylistDataGetter> playlistsData = new List<PlaylistDataGetter>();
+
+
         DispatcherTimer timer;
 
         double panelWidth;
@@ -32,6 +37,9 @@ namespace RogecnadClienAppRealNoWayNoWay
         public MainWindow()
         {
             InitializeComponent();
+
+            GetTableData();
+
             timer = new DispatcherTimer();
             timer.Interval = new TimeSpan(0, 0, 0, 0, 10);
             timer.Tick += Timer_Tick;
@@ -112,6 +120,39 @@ namespace RogecnadClienAppRealNoWayNoWay
         private void MainPageButton_Click(object sender, RoutedEventArgs e)
         {
             AppManager.mainFrame.Navigate(new MainPage());
+        }
+
+        private void GetTableData()
+        {
+            List<Playlist> playlists = new List<Playlist>();
+            var result = FirebaseClientModel.client.Get("Playlists");
+            Dictionary<string, Playlist> getTracks = result.ResultAs<Dictionary<string, Playlist>>();
+            foreach (var item in getTracks)
+            {
+                var val = new Playlist() { Id = item.Value.Id, PlaylistName = item.Value.PlaylistName, CreatorId = item.Value.CreatorId };
+                playlists.Add(val);
+            }
+            
+            foreach (var item in playlists)
+            {
+                if (item.CreatorId == AppManager.currentUser.Id)
+                {
+                    var val = new PlaylistDataGetter() { playlist = item };
+                    playlistsData.Add(val);
+                }
+                
+            }
+            playlistsListView.ItemsSource = playlistsData;
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            AppManager.FullShutdown();
+        }
+
+        private void CreatePlaylistButton_Click(object sender, RoutedEventArgs e)
+        {
+            AppManager.mainFrame.Navigate(new CreatePlaylistPage());
         }
     }
 }

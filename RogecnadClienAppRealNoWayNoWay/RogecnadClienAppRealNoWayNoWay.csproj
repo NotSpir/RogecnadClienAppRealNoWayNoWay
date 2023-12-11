@@ -357,6 +357,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\DataEditPages\CreatePlaylistPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\DataEditPages\GenreAddEditPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -366,6 +370,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\AuthPages\LoginPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\DataViewPages\SongSearchPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -411,13 +419,17 @@
     <Compile Include="Models\DataModels\SoundTrack.cs" />
     <Compile Include="Models\DataModels\TracksAlbums.cs" />
     <Compile Include="Models\DataModels\TracksPlaylist.cs" />
-    <Compile Include="Models\DataModels\User.cs" />
+    <Compile Include="Models\DataModels\ClientUser.cs" />
     <Compile Include="Models\FirebaseAuthModel.cs" />
     <Compile Include="Models\FirebaseClientModel.cs" />
+    <Compile Include="Models\PlaylistDataGetter.cs" />
     <Compile Include="Models\RandomIdGenerator.cs" />
     <Compile Include="Models\RegisterLoginModel.cs" />
     <Compile Include="Pages\DataEditPages\AlbumUploadPage.xaml.cs">
       <DependentUpon>AlbumUploadPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\DataEditPages\CreatePlaylistPage.xaml.cs">
+      <DependentUpon>CreatePlaylistPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\DataEditPages\GenreAddEditPage.xaml.cs">
       <DependentUpon>GenreAddEditPage.xaml</DependentUpon>
@@ -427,6 +439,9 @@
     </Compile>
     <Compile Include="Pages\AuthPages\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\DataViewPages\SongSearchPage.xaml.cs">
+      <DependentUpon>SongSearchPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -515,6 +530,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\repeatButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\addButton.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets')" />

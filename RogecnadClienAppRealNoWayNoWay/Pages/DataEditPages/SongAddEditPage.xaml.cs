@@ -103,7 +103,7 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages
                 Byte[] bytesCover = File.ReadAllBytes(coverImageFilePath);
                 String fileCover = Convert.ToBase64String(bytesCover);
                 soundTrack.TrackCoverBytes = fileCover;
-                soundTrack.UploaderId = "rvdIy0Rnw4Xq0VWV18aPw5eXHwr1";
+                soundTrack.UploaderId = AppManager.currentUser.Id;
                 FirebaseClientModel.client.Set("Soundtracks/" + soundTrack.Id, soundTrack);
                 MessageBox.Show("Трек загружен");
             }
