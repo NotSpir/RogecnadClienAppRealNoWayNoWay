@@ -81,7 +81,7 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages
             Dictionary<string, SoundTrack> getTracks = result.ResultAs<Dictionary<string, SoundTrack>>();
             foreach (var item in getTracks)
             {
-                var val = new SoundTrack() { Id = item.Value.Id, TrackName = item.Value.TrackName, GenreId = item.Value.GenreId, TrackCoverBytes = item.Value.TrackCoverBytes, UploaderId = item.Value.UploaderId };
+                var val = new SoundTrack() { Id = item.Value.Id, TrackName = item.Value.TrackName, GenreId = item.Value.GenreId, TrackCoverBytes = item.Value.TrackCoverBytes, UploaderId = item.Value.UploaderId, Duration = item.Value.Duration };
                 mainTrackList.Add(val);
             }
             LViewMainSongs.ItemsSource = mainTrackList;

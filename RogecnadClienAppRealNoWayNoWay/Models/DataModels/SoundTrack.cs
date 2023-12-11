@@ -15,6 +15,8 @@ namespace RogecnadClienAppRealNoWayNoWay.Models.DatabaseModels
         public string GenreId { get; set; }
         public string TrackCoverBytes { get; set; }
 
+        public string Duration { get; set; }
+
         public BitmapImage GetCoverImage
         {
             get {

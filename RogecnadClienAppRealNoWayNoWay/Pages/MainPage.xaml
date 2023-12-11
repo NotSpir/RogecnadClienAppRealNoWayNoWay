@@ -48,7 +48,7 @@
                                 </Button>
                             </StackPanel>
 
-                            <TextBlock Text="00:00 / 00:00" Foreground="White" FontSize="16" TextAlignment="Center" Name="timeDisplayTextBlock"/>
+                                <TextBlock Text="{Binding Duration}" Width="200" Foreground="White" FontSize="16" TextAlignment="Center" Name="durationTextBlock"/>
                         </StackPanel>
                     </Border>
                     </Grid>

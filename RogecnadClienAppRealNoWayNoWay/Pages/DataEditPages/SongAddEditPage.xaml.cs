@@ -99,6 +99,7 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages
 
                 string genreID = genreList.Where(x => x.GenreName == GenreComboBox.Text).FirstOrDefault().Id;
                 soundTrack.GenreId = genreID;
+                soundTrack.Duration = duration.ToString();
                 Byte[] bytesCover = File.ReadAllBytes(coverImageFilePath);
                 String fileCover = Convert.ToBase64String(bytesCover);
                 soundTrack.TrackCoverBytes = fileCover;

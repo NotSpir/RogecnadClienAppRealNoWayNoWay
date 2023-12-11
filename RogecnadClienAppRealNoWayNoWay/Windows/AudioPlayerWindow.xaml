@@ -5,8 +5,36 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RogecnadClienAppRealNoWayNoWay.Windows"
         mc:Ignorable="d"
-        Title="AudioPlayerWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="AudioPlayerWindow" Height="350" Width="250">
+    <Grid Background="{StaticResource ColorAccentBackground}">
+        <Border Width="250" Height="280" Background="{StaticResource ColorAccentBackground}" CornerRadius="45">
+            <StackPanel x:Name="MediaPlayerStack">
+                <Image Width="150" Height="150" Margin="5" Name="imageCover" Source="{Binding GetCoverImage}">
+                </Image>
+                <TextBlock Text="TrackName" Foreground="White" FontSize="16" TextAlignment="Center" Name="songnameTextBlock"/>
+                <Button Background="Transparent" BorderBrush="Transparent" Margin="0" Name="ChannelBtn" Click="ChannelBtn_Click">
+                    <TextBlock Foreground="LightGray" Width="200" TextAlignment="Center" Height="20" FontSize="12" Text="UploaderName"></TextBlock>
+                </Button>
+
+                <Line Stretch="Fill" Stroke="{StaticResource ColorAccent}" Grid.Row="3" StrokeThickness="4" X2="1" Width="200" Margin="0 0 0 10"/>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button x:Name="playButton" Click="PlayButton_Click" Width="25" Height="25" Foreground="White" Background="{StaticResource ColorAccent}" BorderBrush="Transparent">
+                        <Image Source="/Resources/PlayButton.png" />
+                    </Button>
+                    <Slider Name="audioSlider" IsSelectionRangeEnabled="True" Width="150" Value="0" VerticalAlignment="Center" ValueChanged="audioSlider_ValueChanged" />
+
+                    <Button x:Name="volumeButton" Click="volumeButton_Click" Width="25" Height="30" Foreground="White" Background="Transparent" BorderBrush="Transparent">
+                        <Image Source="/Resources/VolumeButton.png" />
+                    </Button>
+
+                    <Button x:Name="moreButton" Click="moreButton_Click" Width="25" Height="30" Foreground="White" Background="Transparent" BorderBrush="Transparent">
+                        <Image Source="/Resources/moreButton.png" />
+                    </Button>
+                </StackPanel>
+
+                <TextBlock Text="00:00 / 00:00" Foreground="White" FontSize="16" TextAlignment="Center" Name="timeDisplayTextBlock"/>
+            </StackPanel>
+        </Border>
     </Grid>
 </Window>
