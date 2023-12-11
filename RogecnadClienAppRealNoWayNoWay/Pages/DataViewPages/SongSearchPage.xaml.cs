@@ -24,5 +24,30 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages.DataViewPages
         {
             InitializeComponent();
         }
+
+        private void ChannelBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void moreButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void PlayButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void volumeButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
