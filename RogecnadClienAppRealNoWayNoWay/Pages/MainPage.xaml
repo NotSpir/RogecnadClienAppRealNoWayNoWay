@@ -9,11 +9,17 @@
       
       Title="MainPage">
 
+
+
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+
+        
+        
         <Border BorderBrush="White" BorderThickness="0 0 0 5">
             <TextBlock Text="Композиции от наших авторов" FontSize="40" TextAlignment="Center" FontWeight="Bold" Foreground="White"/>
         </Border>
@@ -47,6 +53,17 @@
 
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                     <Button x:Name="volumeButton" Click="volumeButton_Click" Width="30" Height="30" Foreground="White" Background="Transparent" BorderBrush="Transparent">
+                                        <Button.ContextMenu>
+                                            <ContextMenu Name="cmVolume" Opened="OnOpened" Closed="OnClosed" Background="Black" StaysOpen="true">
+                                                <MenuItem Width="30" x:Name="menuSlider" Background="Black">
+                                                    <MenuItem.Template>
+                                                        <ControlTemplate TargetType="{x:Type MenuItem}" >
+                                                            <Frame Source="ContextMenuPages/VolumeSliderView.xaml" />
+                                                        </ControlTemplate>
+                                                    </MenuItem.Template>
+                                                </MenuItem>
+                                            </ContextMenu>
+                                        </Button.ContextMenu>
                                         <Image Source="/Resources/VolumeButton.png" />
                                     </Button>
 

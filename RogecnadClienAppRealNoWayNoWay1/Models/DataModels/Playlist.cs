@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace RogecnadClienAppRealNoWayNoWay.Models.DatabaseModels
 {
-    internal class TracksPlaylist
+    internal class Playlist
     {
-        public string PlaylistId { get; set; }
-        public List<string> TrackId { get; set; }
+        public string Id { get; set; }
+        public string PlaylistName { get; set; }
+        public string CreatorId { get; set; }
     }
 }

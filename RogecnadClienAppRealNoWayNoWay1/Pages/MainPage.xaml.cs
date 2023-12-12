@@ -1,9 +1,7 @@
-﻿using RogecnadClienAppRealNoWayNoWay.Models;
-using RogecnadClienAppRealNoWayNoWay.Models.DatabaseModels;
-using RogecnadClienAppRealNoWayNoWay.Models.DataModels;
+﻿using RogecnadClienAppRealNoWayNoWay.Models.DatabaseModels;
+using RogecnadClienAppRealNoWayNoWay.Models;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,24 +14,25 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using RogecnadClienAppRealNoWayNoWay.Models.DataModels;
+using System.Media;
+using System.IO;
 
-namespace RogecnadClienAppRealNoWayNoWay.Pages.DataViewPages
+namespace RogecnadClienAppRealNoWayNoWay.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для SongSearchPage.xaml
+    /// Логика взаимодействия для MainPage.xaml
     /// </summary>
-    public partial class SongSearchPage : Page
+    public partial class MainPage : Page
     {
         List<SoundTrack> mainTrackList = new List<SoundTrack>();
         string directory = System.IO.Path.GetFullPath(AppDomain.CurrentDomain.BaseDirectory);
         MediaPlayer soundPlayer = new MediaPlayer();
         bool IsPlaying = false;
         List<Playlist> playlists = new List<Playlist>();
-        string seaarchString = "";
-        public SongSearchPage(string searchString)
+        public MainPage()
         {
             InitializeComponent();
-            seaarchString = searchString;
             GetTableData();
             var result = FirebaseClientModel.client.Get("Playlists");
             Dictionary<string, Playlist> getTracks = result.ResultAs<Dictionary<string, Playlist>>();
@@ -44,7 +43,6 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages.DataViewPages
             }
             playlists = playlists.Where(x => x.CreatorId == AppManager.currentUser.Id).ToList();
         }
-
 
         private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
@@ -89,6 +87,8 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages.DataViewPages
         private void GetTableData()
         {
             var result = FirebaseClientModel.client.Get("Soundtracks");
+
+
             Dictionary<string, SoundTrack> getTracks = result.ResultAs<Dictionary<string, SoundTrack>>();
             if (getTracks != null)
             {
@@ -97,14 +97,13 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages.DataViewPages
                     var val = new SoundTrack() { Id = item.Value.Id, TrackName = item.Value.TrackName, GenreId = item.Value.GenreId, TrackCoverBytes = item.Value.TrackCoverBytes, UploaderId = item.Value.UploaderId, Duration = item.Value.Duration };
                     mainTrackList.Add(val);
                 }
-                mainTrackList = mainTrackList.Where(x => x.TrackName.Contains(seaarchString)).ToList();
                 LViewMainSongs.ItemsSource = mainTrackList;
             }
         }
 
         private async Task<string> GetTrack(string ID)
         {
-            var result = FirebaseClientModel.client.Get("TrackFiles/" + ID);
+            var result = FirebaseClientModel.client.Get("TrackFiles\\" + ID);
             return result.ResultAs<PlayingTracks>().trackBytes;
         }
 
@@ -130,12 +129,12 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages.DataViewPages
             thread.Start();
         }
 
-        private async void moreButton_Click(object sender, RoutedEventArgs e)
+        private void moreButton_Click(object sender, RoutedEventArgs e)
         {
             Playlist playlist = playlists.FirstOrDefault();
             string trackID = ((sender as Button).DataContext as SoundTrack).Id;
-            //Добавить
-            FirebaseClientModel.client.Set("TracksPlaylist/" + playlist.Id + "/" + trackID, "");
+            TracksPlaylist tracksPlaylist = new TracksPlaylist() { PlaylistId = playlist.Id, TrackId = trackID };
+            FirebaseClientModel.client.Set("PlaylistsTracks/" + playlist.Id, tracksPlaylist);
             MessageBox.Show($"Добавлено в плейлист {playlist.PlaylistName}", "Успех", MessageBoxButton.OK, MessageBoxImage.None);
         }
     }

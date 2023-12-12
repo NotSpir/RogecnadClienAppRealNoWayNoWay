@@ -1,0 +1,65 @@
+﻿<Page x:Class="RogecnadClienAppRealNoWayNoWay.Pages.DataViewPages.GenreViewPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:RogecnadClienAppRealNoWayNoWay.Pages.DataViewPages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="GenreViewPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" ></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid>
+            <StackPanel HorizontalAlignment="Left" Orientation="Vertical" Margin="10">
+                <TextBlock Text="Введите название для поиска:  " Width="175" Height="25" TextAlignment="Right" Foreground="White" VerticalAlignment="Center"></TextBlock>
+                <TextBox Width="300" Height="20" Name="TBoxSearch" TextChanged="TBoxSearch_TextChanged" VerticalAlignment="Center"></TextBox>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
+                <Button Content="Добавить" Height="35" Name="BtnAdd" Click="BtnAdd_Click" Width="100px" Background="Black" Foreground="White" 
+                        BorderBrush="Green" BorderThickness="2px" Margin="5 5 5 5"></Button>
+                <Button Content="Удалить" Height="35" Name="BtnDelete" Click="BtnDelete_Click" Width="100px" Foreground="White" 
+                        BorderThickness="2px" Background="Black" BorderBrush="Red" Margin="5 5 5 5" >
+                </Button>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1">
+            <ListView Name="LViewData" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <EventSetter Event="MouseRightButtonUp" Handler="ListViewItem_MouseRightButtonUp" />
+                        <Setter Property="BorderBrush" Value="DeepSkyBlue" />
+                        <Setter Property="BorderThickness" Value="0,0,0,2" />
+                        <Setter Property="Background" Value="Transparent" />
+                        <Setter Property="Width" Value="1350" />
+
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Stretch"></WrapPanel>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid HorizontalAlignment="Stretch" Margin="20">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"></RowDefinition>
+                                <RowDefinition Height="auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Text="{Binding GenreId}"  TextAlignment="Justify" Width="auto"
+                                   HorizontalAlignment="Stretch" Margin="0 5" FontSize="26" Grid.Row="0"></TextBlock>
+                            <TextBlock Text="{Binding GenreName}" 
+                                   Grid.Row="1" Margin="0 5 5 5" HorizontalAlignment="Stretch" TextAlignment="Left" FontSize="26" FontWeight="SemiBold"></TextBlock>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </Grid>
+</Page>

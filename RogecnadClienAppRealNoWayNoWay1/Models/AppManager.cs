@@ -21,7 +21,7 @@ namespace RogecnadClienAppRealNoWayNoWay.Models
 
         public static Frame mainFrame = new Frame();
 
-        public static double SongVolume = 10.0;
+        public static double SongVolume = 10;
 
         public static void FullShutdown()
         {

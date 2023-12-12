@@ -52,6 +52,7 @@ namespace RogecnadClienAppRealNoWayNoWay
             }
             MainWindow = _host.Services.GetRequiredService<MainWindow>();
             MainWindow.Show();
+
             base.OnStartup(e);
         }
     }

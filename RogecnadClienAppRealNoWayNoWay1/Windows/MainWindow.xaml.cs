@@ -109,7 +109,7 @@ namespace RogecnadClienAppRealNoWayNoWay
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
-            AppManager.mainFrame.Navigate(new SongSearchPage(srcBarTextBox.Text));
+            AppManager.mainFrame.Navigate(new GenreViewPage());
         }
 
         private void ChartsButton_Click(object sender, RoutedEventArgs e)
@@ -153,12 +153,6 @@ namespace RogecnadClienAppRealNoWayNoWay
         private void CreatePlaylistButton_Click(object sender, RoutedEventArgs e)
         {
             AppManager.mainFrame.Navigate(new CreatePlaylistPage());
-        }
-
-        private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            var a = ((sender as ListViewItem).DataContext as PlaylistDataGetter).playlist.Id;
-            AppManager.mainFrame.Navigate(new PlaylistViewPage(a));
         }
     }
 }

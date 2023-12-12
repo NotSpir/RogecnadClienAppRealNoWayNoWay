@@ -42,7 +42,7 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages
                 playlists.Add(val);
             }
             playlists = playlists.Where(x => x.CreatorId == AppManager.currentUser.Id).ToList();
-        }
+    }
 
         private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
@@ -76,7 +76,8 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages
 
         private void volumeButton_Click(object sender, RoutedEventArgs e)
         {
-
+           /* cmVolume.PlacementTarget = sender as Button;
+            cmVolume.IsOpen = true;*/
         }
 
         private void ChannelBtn_Click(object sender, RoutedEventArgs e)
@@ -103,7 +104,7 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages
 
         private async Task<string> GetTrack(string ID)
         {
-            var result = FirebaseClientModel.client.Get("TrackFiles\\" + ID);
+            var result = FirebaseClientModel.client.Get("TrackFiles/" + ID);
             return result.ResultAs<PlayingTracks>().trackBytes;
         }
 
@@ -129,13 +130,23 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages
             thread.Start();
         }
 
-        private void moreButton_Click(object sender, RoutedEventArgs e)
+        private async void moreButton_Click(object sender, RoutedEventArgs e)
         {
             Playlist playlist = playlists.FirstOrDefault();
             string trackID = ((sender as Button).DataContext as SoundTrack).Id;
-            TracksPlaylist tracksPlaylist = new TracksPlaylist() { PlaylistId = playlist.Id, TrackId = trackID };
-            FirebaseClientModel.client.Set("PlaylistsTracks/" + playlist.Id, tracksPlaylist);
+            //Добавить
+            FirebaseClientModel.client.Set("TracksPlaylist/" + playlist.Id + "/" + trackID, "");
             MessageBox.Show($"Добавлено в плейлист {playlist.PlaylistName}", "Успех", MessageBoxButton.OK, MessageBoxImage.None);
+        }
+
+        private void OnOpened(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void OnClosed(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

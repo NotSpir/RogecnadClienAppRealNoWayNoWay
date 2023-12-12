@@ -31,7 +31,7 @@
                 <Button Background="Transparent" BorderBrush="Transparent" Margin="25 0" Name="ChartsButton" Click="ChartsButton_Click">
                     <TextBlock Background="Transparent" Foreground="White"  Width="100" Height="50" TextAlignment="Center"  FontSize="24">Кнопка, которую я тыкаю, когда надо тестить</TextBlock>
                 </Button>
-                <TextBox Name="srcBarTextBox" Width="500" Margin="100 0 0 0" Height="40" Background="{StaticResource ColorAccentBackground}" Foreground="White" />
+                <TextBox Width="500" Margin="100 0 0 0" Height="40" Background="{StaticResource ColorAccentBackground}" Foreground="White" />
                 <Button Background="Transparent" BorderBrush="Transparent" Margin="25 0" Name="SearchButton" Click="SearchButton_Click">
                     <TextBlock Background="Transparent" Foreground="White" Width="100" Height="50" TextAlignment="Center"  FontSize="24">Поиск</TextBlock>
                 </Button>
@@ -72,13 +72,7 @@
                                 </Button>
                             </StackPanel>
                         <ListView x:Name="playlistsListView" ScrollViewer.HorizontalScrollBarVisibility="Disabled" FontFamily="Comic Sans MS" FontSize="14" Foreground="White" BorderBrush="Transparent" Background="Transparent" FontWeight="Bold">
-                                <ListView.ItemContainerStyle>
-                                    <Style TargetType="ListViewItem">
-                                        <EventSetter Event="MouseDoubleClick" Handler="ListViewItem_MouseDoubleClick" />
-
-                                    </Style>
-                                </ListView.ItemContainerStyle>
-                                <ListView.ItemTemplate>
+                            <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
                                         <ListView Background="{StaticResource ColorPrimaryBackground}">

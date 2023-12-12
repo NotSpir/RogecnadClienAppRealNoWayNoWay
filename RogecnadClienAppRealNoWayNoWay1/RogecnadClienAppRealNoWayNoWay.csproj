@@ -353,14 +353,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Pages\ContextMenuPages\AddToPlaylistView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\ContextMenuPages\VolumeSliderView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Pages\DataEditPages\AlbumUploadPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -433,12 +425,6 @@
     <Compile Include="Models\PlaylistDataGetter.cs" />
     <Compile Include="Models\RandomIdGenerator.cs" />
     <Compile Include="Models\RegisterLoginModel.cs" />
-    <Compile Include="Pages\ContextMenuPages\AddToPlaylistView.xaml.cs">
-      <DependentUpon>AddToPlaylistView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\ContextMenuPages\VolumeSliderView.xaml.cs">
-      <DependentUpon>VolumeSliderView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Pages\DataEditPages\AlbumUploadPage.xaml.cs">
       <DependentUpon>AlbumUploadPage.xaml</DependentUpon>
     </Compile>

@@ -1,0 +1,50 @@
+﻿<Application x:Class="RogecnadClienAppRealNoWayNoWay.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:RogecnadClienAppRealNoWayNoWay">
+    <Application.Resources>
+        <SolidColorBrush x:Key="ColorAccentBackground">
+            <SolidColorBrush.Color>
+                <Color
+            A="255"
+            R="23"
+            G="23"
+            B="23" />
+            </SolidColorBrush.Color>
+        </SolidColorBrush>
+        <SolidColorBrush x:Key="ColorPrimaryBackground">
+            <SolidColorBrush.Color>
+                <Color
+            A="255"
+            R="31"
+            G="31"
+            B="31" />
+            </SolidColorBrush.Color>
+        </SolidColorBrush>
+        <SolidColorBrush x:Key="ColorAccent">
+            <SolidColorBrush.Color>
+                <Color
+            A="255"
+            R="118"
+            G="37"
+            B="66" />
+            </SolidColorBrush.Color>
+        </SolidColorBrush>
+        <SolidColorBrush x:Key="ColorBackgroundFade">
+            <SolidColorBrush.Color>
+                <Color
+            A="255"
+            R="42"
+            G="42"
+            B="42" />
+            </SolidColorBrush.Color>
+        </SolidColorBrush>
+        <Style TargetType="Slider" >
+            <Setter Property="Stylus.IsPressAndHoldEnabled" Value="False" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{StaticResource ColorAccent}" />
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        </Style>
+    </Application.Resources>
+</Application>
