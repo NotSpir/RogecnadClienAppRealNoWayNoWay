@@ -37,11 +37,6 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages.DataEditPages
         private void InsertButton_Click(object sender, RoutedEventArgs e)
         {
             string err = "";
-
-            if (genre == null && string.IsNullOrWhiteSpace(GenreIDTextBox.Text))
-            {
-                err += "Не введен идентификатор (пример: example_id).\n";
-            }
             if (string.IsNullOrWhiteSpace(GenreNameTextBox.Text))
             {
                 err += "Не введено название жанра.\n";
@@ -52,7 +47,7 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages.DataEditPages
                 if (genre == null)
                 {
                     genre = new Genre();
-                    genre.Id = GenreIDTextBox.Text;
+                    genre.Id = RandomIdGenerator.GeneratePushID();
                     genre.GenreName = GenreNameTextBox.Text;
                     FirebaseClientModel.client.Set("Genres/" + genre.Id, genre);
                 }

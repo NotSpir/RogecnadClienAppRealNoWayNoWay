@@ -16,6 +16,7 @@ namespace RogecnadClienAppRealNoWayNoWay.Models
                 List<TracksPlaylist> tracksInPlaylists = new List<TracksPlaylist>();
                 var result = FirebaseClientModel.client.Get("PlaylistsTracks");
                 Dictionary<string, TracksPlaylist> getTracks = result.ResultAs<Dictionary<string, TracksPlaylist>>();
+                if (getTracks != null)
                 foreach (var item in getTracks)
                 {
                     if (item.Value.PlaylistId == playlist.Id)

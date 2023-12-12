@@ -72,7 +72,7 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages
 
         private void uploadCoverButton_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog ofd = new OpenFileDialog { Filter = "Image | *.png" };
+            OpenFileDialog ofd = new OpenFileDialog { Filter = "Image | *.png; *.jpg; *.jpeg" };
             if (ofd.ShowDialog() == true)
             {
                 coverImageFilePath = ofd.FileName;

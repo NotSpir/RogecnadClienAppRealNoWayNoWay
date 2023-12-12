@@ -28,10 +28,6 @@
             <Line Stretch="Fill" Stroke="{StaticResource ColorAccent}" Grid.Row="1" StrokeThickness="6" X2="1" Width="310"/>
 
             <StackPanel Grid.Row="2">
-                <StackPanel Margin="0 20 0 0">
-                    <TextBlock Text="Идентификатор жанра" Foreground="White" Width="250" TextAlignment="Left" Height="30" FontSize="22"/>
-                    <TextBox Background="{StaticResource ColorPrimaryBackground}" Width="250" Height="40" Foreground="White" FontSize="18" Name="GenreIDTextBox" />
-                </StackPanel>
                 <StackPanel Margin="0 20 0 20">
                     <TextBlock Text="Название жанра" Foreground="White" Width="250" TextAlignment="Left" Height="30" FontSize="22"/>
                     <TextBox Background="{StaticResource ColorPrimaryBackground}" Width="250" Height="40" Foreground="White" FontSize="18" Name="GenreNameTextBox" />

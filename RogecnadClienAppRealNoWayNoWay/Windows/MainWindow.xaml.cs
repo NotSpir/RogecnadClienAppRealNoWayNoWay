@@ -109,7 +109,7 @@ namespace RogecnadClienAppRealNoWayNoWay
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
-            AppManager.mainFrame.Navigate(new PlaylistViewPage());
+            AppManager.mainFrame.Navigate(new GenreViewPage());
         }
 
         private void ChartsButton_Click(object sender, RoutedEventArgs e)
