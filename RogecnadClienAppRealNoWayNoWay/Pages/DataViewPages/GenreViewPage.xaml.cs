@@ -64,6 +64,9 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages.DataViewPages
                                 }
                                 FirebaseClientModel.client.Delete("Genres/" + item.Id);
                             }
+                        } else
+                        {
+                            FirebaseClientModel.client.Delete("Genres/" + item.Id);
                         }
                     }
                     MessageBox.Show("Данные удалены!");
