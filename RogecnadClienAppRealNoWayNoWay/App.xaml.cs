@@ -50,6 +50,14 @@ namespace RogecnadClienAppRealNoWayNoWay
                 MessageBox.Show("Отсутствует подключение к интернету. Попробуйте зайти позже");
                 Application.Current.Shutdown();
             }
+            try
+            {
+                await RegisterLoginModel.SignInOnStart();
+            }
+            catch
+            {
+
+            }
             MainWindow = _host.Services.GetRequiredService<MainWindow>();
             MainWindow.Show();
             base.OnStartup(e);

@@ -5,8 +5,10 @@ using Microsoft.Extensions.Hosting;
 using RogecnadClienAppRealNoWayNoWay.Models.DatabaseModels;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Navigation;
@@ -15,7 +17,7 @@ namespace RogecnadClienAppRealNoWayNoWay.Models
 {
     internal class RegisterLoginModel
     {
-
+        static string directory = System.IO.Path.GetFullPath(AppDomain.CurrentDomain.BaseDirectory);
         public static async Task Register(string email, string password, string username)
         {
 
@@ -39,10 +41,26 @@ namespace RogecnadClienAppRealNoWayNoWay.Models
             var authProvider = FirebaseAuthModel.client;
             var auth = authProvider.SignInWithEmailAndPasswordAsync(email, password);
             var return_data = await auth;
-            AppManager.token = return_data.User.GetIdTokenAsync().ToString();
+
+            Properties.Settings.Default.email = email;
+            Properties.Settings.Default.password = password;
+            Properties.Settings.Default.Save();
+
             var result = FirebaseClientModel.client.Get("Users/" + return_data.User.Uid);
             AppManager.currentUser = result.ResultAs<ClientUser>();
         }
 
+        public static async Task SignInOnStart()
+        {
+            string email = Properties.Settings.Default.email;
+            string password = Properties.Settings.Default.password;
+            var authProvider = FirebaseAuthModel.client;
+            var auth = authProvider.SignInWithEmailAndPasswordAsync(email, password);
+            var return_data = await auth;
+
+            var result = FirebaseClientModel.client.Get("Users/" + return_data.User.Uid);
+            AppManager.currentUser = result.ResultAs<ClientUser>();
+
+        }
     }
 }

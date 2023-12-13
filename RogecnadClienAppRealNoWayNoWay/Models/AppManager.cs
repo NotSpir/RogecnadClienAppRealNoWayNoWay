@@ -15,7 +15,7 @@ namespace RogecnadClienAppRealNoWayNoWay.Models
         public static string token = null;
         public static ClientUser currentUser = new ClientUser();
 
-        public static MainWindow mainWindow = new MainWindow();
+        public static MainWindow mainWindow;
         public static AuthorizeWindow authWindow = new AuthorizeWindow();
         public static AudioPlayerWindow audioWindow = new AudioPlayerWindow();
 

@@ -49,6 +49,7 @@ namespace RogecnadClienAppRealNoWayNoWay
                 else
                     usernameTB.Text = AppManager.currentUser.Login;
             }
+            AppManager.mainWindow = this;
             GetTableData();
 
             timer = new DispatcherTimer();
@@ -182,6 +183,8 @@ namespace RogecnadClienAppRealNoWayNoWay
 
         private void logOutButton_Click(object sender, RoutedEventArgs e)
         {
+            FirebaseAuthModel.client.SignOut();
+            AppManager.currentUser = new ClientUser();
             AppManager.mainWindow.Close();
             AppManager.mainWindow = null;
             AppManager.mainWindow = new MainWindow();

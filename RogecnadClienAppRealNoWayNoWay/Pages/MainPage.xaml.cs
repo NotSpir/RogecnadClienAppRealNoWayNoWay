@@ -139,10 +139,6 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages
             MenuItem menuItem = contextMenu.Items[0] as MenuItem;
 
             e.Handled = true;
-            /*Playlist playlist = playlists.FirstOrDefault();
-            string trackID = ((sender as Button).DataContext as SoundTrack).Id;
-            FirebaseClientModel.client.Set("TracksPlaylist/" + playlist.Id + "/" + trackID, "");
-            MessageBox.Show($"Добавлено в плейлист {playlist.PlaylistName}", "Успех", MessageBoxButton.OK, MessageBoxImage.None);*/
         }
 
         private void OnOpened(object sender, RoutedEventArgs e)

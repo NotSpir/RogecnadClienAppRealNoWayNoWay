@@ -47,11 +47,6 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages
                 MessageBox.Show("Пользователь не найден");
                 return;
             }
-            if (AppManager.token == null)
-            {
-                MessageBox.Show("Пользователь не найден");
-                return;
-            }
 
             MessageBox.Show("Вы вошли в учетную запись");
             AppManager.mainWindow = null;
