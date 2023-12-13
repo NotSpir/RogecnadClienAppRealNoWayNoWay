@@ -12,7 +12,6 @@ namespace RogecnadClienAppRealNoWayNoWay.Models
 {
     internal class AppManager
     {
-        public static string token = null;
         public static ClientUser currentUser = new ClientUser();
 
         public static MainWindow mainWindow;

@@ -184,8 +184,9 @@ namespace RogecnadClienAppRealNoWayNoWay
         private void logOutButton_Click(object sender, RoutedEventArgs e)
         {
             FirebaseAuthModel.client.SignOut();
+            Properties.Settings.Default.Reset();
             AppManager.currentUser = new ClientUser();
-            AppManager.mainWindow.Close();
+            AppManager.mainWindow.Hide();
             AppManager.mainWindow = null;
             AppManager.mainWindow = new MainWindow();
             AppManager.mainWindow.Show();
