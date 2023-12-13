@@ -13,7 +13,7 @@ namespace RogecnadClienAppRealNoWayNoWay.Models
     internal class AppManager
     {
         public static string token = null;
-        public static ClientUser currentUser = new ClientUser() { Id = "rvdIy0Rnw4Xq0VWV18aPw5eXHwr1" };
+        public static ClientUser currentUser = new ClientUser();
 
         public static MainWindow mainWindow = new MainWindow();
         public static AuthorizeWindow authWindow = new AuthorizeWindow();
@@ -27,6 +27,8 @@ namespace RogecnadClienAppRealNoWayNoWay.Models
         {
             Environment.Exit(0);
         }
+
+        public static string selectedTrackID = "what";
     }
 }
 

@@ -51,14 +51,14 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages
 
         private async void PlayButton_Click(object sender, RoutedEventArgs e)
         {
-            string trackID = ((sender as Button).DataContext as SoundTrack).Id;
+            AppManager.audioWindow.ReloadPlayer(((sender as Button).DataContext as SoundTrack).Id);
+            /*string trackID = ((sender as Button).DataContext as SoundTrack).Id;
             string trackByteString = await GetTrack(trackID);
             byte[] bytes = Convert.FromBase64String(trackByteString);
             string fileName = directory + @"\костыль.mp3";
 
             try
             {
-                // Check if file already exists. If yes, delete it.
                 if (File.Exists(fileName))
                 {
                     File.Delete(fileName);
@@ -71,13 +71,17 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages
                 return;
             }
             AudioPlayer.soundPlayer = AudioPlayer.InitializePlayer(fileName);
-            AudioPlayer.Play(AudioPlayer.soundPlayer, new TimeSpan(0));
+            AudioPlayer.Play(AudioPlayer.soundPlayer, new TimeSpan(0));*/
         }
 
         private void volumeButton_Click(object sender, RoutedEventArgs e)
         {
-           /* cmVolume.PlacementTarget = sender as Button;
-            cmVolume.IsOpen = true;*/
+                Button sentItem = sender as Button;
+                ContextMenu contextMenu = sentItem.ContextMenu;
+                contextMenu.PlacementTarget = sentItem;
+                contextMenu.IsOpen = true;   
+
+                e.Handled = true;
         }
 
         private void ChannelBtn_Click(object sender, RoutedEventArgs e)
@@ -108,11 +112,6 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages
             return result.ResultAs<PlayingTracks>().trackBytes;
         }
 
-        private void audioSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-
-        }
-
         private async void ChangeTimeValuesAsync()
         {
             System.Threading.Thread thread = new System.Threading.Thread(async delegate ()
@@ -132,11 +131,18 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages
 
         private async void moreButton_Click(object sender, RoutedEventArgs e)
         {
-            Playlist playlist = playlists.FirstOrDefault();
+            Button sentItem = sender as Button;
+            AppManager.selectedTrackID = (sentItem.DataContext as SoundTrack).Id;
+            ContextMenu contextMenu = sentItem.ContextMenu;
+            contextMenu.PlacementTarget = sentItem;
+            contextMenu.IsOpen = true;
+            MenuItem menuItem = contextMenu.Items[0] as MenuItem;
+
+            e.Handled = true;
+            /*Playlist playlist = playlists.FirstOrDefault();
             string trackID = ((sender as Button).DataContext as SoundTrack).Id;
-            //Добавить
             FirebaseClientModel.client.Set("TracksPlaylist/" + playlist.Id + "/" + trackID, "");
-            MessageBox.Show($"Добавлено в плейлист {playlist.PlaylistName}", "Успех", MessageBoxButton.OK, MessageBoxImage.None);
+            MessageBox.Show($"Добавлено в плейлист {playlist.PlaylistName}", "Успех", MessageBoxButton.OK, MessageBoxImage.None);*/
         }
 
         private void OnOpened(object sender, RoutedEventArgs e)

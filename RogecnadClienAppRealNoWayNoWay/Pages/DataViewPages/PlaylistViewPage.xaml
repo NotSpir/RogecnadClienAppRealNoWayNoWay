@@ -50,7 +50,7 @@
                                 </Image>
                                 <TextBlock Text="{Binding TrackName}" Foreground="White" FontSize="16" TextAlignment="Center" Name="songnameTextBlock"/>
                                 <Button Background="Transparent" BorderBrush="Transparent" Margin="0" Name="ChannelBtn" Click="ChannelBtn_Click">
-                                    <TextBlock Foreground="LightGray" Width="200" TextAlignment="Center" Height="20" FontSize="12" Text="{Binding UploaderId}"></TextBlock>
+                                    <TextBlock Foreground="LightGray" Width="200" TextAlignment="Center" Height="20" FontSize="12" Text="{Binding getUserName}"></TextBlock>
                                 </Button>
 
                                 <Line Stretch="Fill" Stroke="{StaticResource ColorAccent}" Grid.Row="3" StrokeThickness="4" X2="1" Width="200" Margin="0 0 0 10"/>

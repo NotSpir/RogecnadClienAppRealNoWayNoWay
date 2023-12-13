@@ -1,10 +1,14 @@
 ﻿using Firebase.Auth;
+using Firebase.Auth.Providers;
+using FireSharp.Config;
 using Microsoft.Extensions.Hosting;
+using RogecnadClienAppRealNoWayNoWay.Models.DatabaseModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Navigation;
 
 namespace RogecnadClienAppRealNoWayNoWay.Models
@@ -12,28 +16,32 @@ namespace RogecnadClienAppRealNoWayNoWay.Models
     internal class RegisterLoginModel
     {
 
-        public static async Task<string> Register(string email, string password, string username)
+        public static async Task Register(string email, string password, string username)
         {
-            
+
             try
             {
-                await FirebaseAuthModel.client.CreateUserWithEmailAndPasswordAsync(email, password, username);
+                var authProvider = FirebaseAuthModel.client;
+                var auth = authProvider.CreateUserWithEmailAndPasswordAsync(email, password, username);
+                var return_data = await auth;
+                var UserID = return_data.User.Uid;
+                var user = new ClientUser() { Id = UserID, Email = email, Login = username, Role = "user" };
+                FirebaseClientModel.client.Set("Users/" + user.Id, user);
             }
             catch (Exception ex)
             {
-                if (ex.Message.Contains("EMAIL_EXISTS"))
-                    return "Учетная запись с данной почтой уже существует";
-                else
-                    return "Что-то пошло не так. Забейте того, кто писал бэкенд тапком, если этот придурок умудрился неверно написать регистрацию.";
+                    MessageBox.Show("Учетная запись с данной почтой уже существует", "Ошибка");
             }
-            return "Учетная запись успешно создана";
         }
 
-        public static async Task<string> SignInAsync(string email, string password)
+        public static async Task SignInAsync(string email, string password)
         {
-            var userCredentials = await FirebaseAuthModel.client.SignInWithEmailAndPasswordAsync(email, password);
-
-            return userCredentials.User.GetIdTokenAsync().Result;//.firebaseToken.ToString();
+            var authProvider = FirebaseAuthModel.client;
+            var auth = authProvider.SignInWithEmailAndPasswordAsync(email, password);
+            var return_data = await auth;
+            AppManager.token = return_data.User.GetIdTokenAsync().ToString();
+            var result = FirebaseClientModel.client.Get("Users/" + return_data.User.Uid);
+            AppManager.currentUser = result.ResultAs<ClientUser>();
         }
 
     }

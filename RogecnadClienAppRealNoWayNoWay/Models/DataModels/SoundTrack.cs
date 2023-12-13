@@ -32,5 +32,15 @@ namespace RogecnadClienAppRealNoWayNoWay.Models.DatabaseModels
                 }
             }
         }
+
+        public string getUserName
+        {
+            get
+            {
+                var result = FirebaseClientModel.client.Get("Users/" + UploaderId);
+                string name = result.ResultAs<ClientUser>().Login;
+                return name;
+            }
+        }
     }
 }

@@ -43,7 +43,7 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages.DataViewPages
 
         private void ListViewItem_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
         {
-
+            NavigationService.Navigate(new GenreAddEditPage(((sender as ListViewItem).DataContext as Genre).Id));
         }
 
         private void TBoxSearch_TextChanged(object sender, TextChangedEventArgs e)

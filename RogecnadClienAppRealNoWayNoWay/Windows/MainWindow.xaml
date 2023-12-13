@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RogecnadClienAppRealNoWayNoWay"
         mc:Ignorable="d" Closing="Window_Closing"
-        Title="MainWindow" Height="1000" Width="1900">
+        Title="MainWindow" Height="1000" Width="1800">
     <Grid Background="{StaticResource ColorPrimaryBackground}">
         <Grid.RowDefinitions>
             <RowDefinition Height="75" />
@@ -16,7 +16,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="210"/>
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="300" />
+                <ColumnDefinition Width="800" />
             </Grid.ColumnDefinitions>
 
             <StackPanel Grid.Column="0" Orientation="Horizontal" Visibility="Visible">
@@ -28,21 +28,34 @@
                 <Button Background="Transparent" BorderBrush="Transparent" Margin="25 0" Name="MainPageButton" Click="MainPageButton_Click">
                     <TextBlock Background="Transparent" Foreground="White" Width="100" Height="50" TextAlignment="Center"  FontSize="24">Главная</TextBlock>
                 </Button>
-                <Button Background="Transparent" BorderBrush="Transparent" Margin="25 0" Name="ChartsButton" Click="ChartsButton_Click">
-                    <TextBlock Background="Transparent" Foreground="White"  Width="100" Height="50" TextAlignment="Center"  FontSize="24">Кнопка, которую я тыкаю, когда надо тестить</TextBlock>
-                </Button>
-                <TextBox Name="srcBarTextBox" Width="500" Margin="100 0 0 0" Height="40" Background="{StaticResource ColorAccentBackground}" Foreground="White" />
+                
+                <TextBox Name="srcBarTextBox" Width="500" Margin="10 0 0 0" Height="40" Background="{StaticResource ColorAccentBackground}" Foreground="White" />
                 <Button Background="Transparent" BorderBrush="Transparent" Margin="25 0" Name="SearchButton" Click="SearchButton_Click">
                     <TextBlock Background="Transparent" Foreground="White" Width="100" Height="50" TextAlignment="Center"  FontSize="24">Поиск</TextBlock>
                 </Button>
             </StackPanel>
 
-            <StackPanel Grid.Column="2" Name="RegisterAndAuthorizeStack" Orientation="Horizontal" Visibility="Visible">
+            <StackPanel Grid.Column="2" Name="RegisterAndAuthorizeStack" HorizontalAlignment="Right" Orientation="Horizontal" Visibility="Visible">
                 <Button Background="Transparent" BorderBrush="Transparent" Margin="0 0 10 0" Name="LogInButton" Click="LogInButton_Click">
                     <TextBlock Background="Transparent" Foreground="White"  Width="100" Height="50" TextAlignment="Center" FontSize="24">Войти</TextBlock>
                 </Button>
                 <Button Background="Transparent" BorderBrush="Transparent" Name="RegisterButton" Click="RegisterButton_Click">
                     <TextBlock Background="{StaticResource ColorAccent}" Foreground="White" Width="180" TextAlignment="Center" Height="50" FontSize="24">Регистрация</TextBlock>
+                </Button>
+            </StackPanel>
+
+            <StackPanel Grid.Column="2" HorizontalAlignment="Right" Name="UserStack" Orientation="Horizontal" Visibility="Collapsed">
+                <Button Background="Transparent" BorderBrush="Transparent" Margin="5 0" Name="ChartsButton" Click="ChartsButton_Click">
+                    <TextBlock Background="{StaticResource ColorAccent}" Foreground="White"  Width="155" Height="50" TextAlignment="Center" FontSize="20">Загрузить песню</TextBlock>
+                </Button>
+                <Button Background="Transparent" BorderBrush="Transparent" Margin="5 0" Name="ViewGenresButton" Visibility="Collapsed" Click="ViewGenresButton_Click">
+                    <TextBlock Background="MediumPurple" Foreground="White"  Width="190" Height="50" TextAlignment="Center"  FontSize="20">Просмотреть жанры</TextBlock>
+                </Button>
+                <Button Background="Transparent" BorderBrush="Transparent" Margin="0 0 5 0" Name="MyChannelBtn" Click="MyChannelBtn_Click">
+                    <TextBlock Background="Transparent" Foreground="White" Name="usernameTB" Width="auto" Height="50" TextAlignment="Center" FontSize="24" Text="userName"/>
+                </Button>
+                <Button Background="Transparent" BorderBrush="Transparent" Name="logOutButton" Click="logOutButton_Click">
+                    <TextBlock Background="{StaticResource ColorAccent}" Foreground="White" Width="80" TextAlignment="Center" Height="50" FontSize="24">Выход</TextBlock>
                 </Button>
             </StackPanel>
         </Grid>
@@ -67,8 +80,11 @@
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
                             <Image Source="/Resources/PlaylistIcon.png" Height="30" />
                             <TextBlock Margin="20 0 0 0" Text="Плейлисты" VerticalAlignment="Center" Foreground="White" FontSize="14"/>
-                                <Button x:Name="CreatePlaylistButton" Click="CreatePlaylistButton_Click" Width="30" Margin="20 0" Height="30" Foreground="White" Background="Transparent" BorderBrush="Transparent">
+                                <Button x:Name="CreatePlaylistButton" Click="CreatePlaylistButton_Click" Width="30" Margin="20 0 0 0" Height="30" Foreground="White" Background="Transparent" BorderBrush="Transparent">
                                     <Image Source="/Resources/addButton.png" />
+                                </Button>
+                                <Button x:Name="RefreshPlaylistButton" Click="RefreshPlaylistButton_Click" Width="30" Margin="0 0" Height="30" Foreground="White" Background="Transparent" BorderBrush="Transparent">
+                                    <Image Source="/Resources/repeatButton.png" />
                                 </Button>
                             </StackPanel>
                         <ListView x:Name="playlistsListView" ScrollViewer.HorizontalScrollBarVisibility="Disabled" FontFamily="Comic Sans MS" FontSize="14" Foreground="White" BorderBrush="Transparent" Background="Transparent" FontWeight="Bold">

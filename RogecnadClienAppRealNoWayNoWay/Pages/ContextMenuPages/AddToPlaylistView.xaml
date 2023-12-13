@@ -6,10 +6,11 @@
       xmlns:local="clr-namespace:RogecnadClienAppRealNoWayNoWay.Pages.ContextMenuPages"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="250"
-      Title="AddToPlaylistView">
+      Title="AddToPlaylistView"
+      Loaded="Page_Loaded">
 
     <Grid>
-        <ListView Height="300" Name="LViewData" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch">
+        <ListView Height="300" Name="LViewData" Foreground="White" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <EventSetter Event="MouseLeftButtonUp" Handler="ListViewItem_MouseLeftButtonUp" />
@@ -27,9 +28,9 @@
             </ListView.ItemsPanel>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid HorizontalAlignment="Stretch" Margin="20">
+                    <Grid HorizontalAlignment="Stretch" Margin="5">
                         <TextBlock Text="{Binding PlaylistName}" 
-                                   Margin="0 5 5 5" HorizontalAlignment="Stretch" TextAlignment="Left" FontSize="26" FontWeight="SemiBold"></TextBlock>
+                                   Margin="0 5 0 5" HorizontalAlignment="Stretch" TextAlignment="Left" FontSize="14" FontWeight="SemiBold"></TextBlock>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>

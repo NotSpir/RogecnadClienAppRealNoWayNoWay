@@ -106,6 +106,7 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages
                 soundTrack.UploaderId = AppManager.currentUser.Id;
                 FirebaseClientModel.client.Set("Soundtracks/" + soundTrack.Id, soundTrack);
                 MessageBox.Show("Трек загружен");
+                NavigationService.Navigate(new SongAddEditPage());
             }
             catch
             {
@@ -191,6 +192,11 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages
         private void GenreComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             CheckReady();
+        }
+
+        private void GoBackBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using FireSharp;
 using RogecnadClienAppRealNoWayNoWay.Models;
 using RogecnadClienAppRealNoWayNoWay.Models.DatabaseModels;
+using RogecnadClienAppRealNoWayNoWay.Pages.DataViewPages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +29,8 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages.DataEditPages
         {
             if (ID != null)
             {
-                Console.WriteLine("");
+                var result = FirebaseClientModel.client.Get("Genres/" + ID);
+                genre = result.ResultAs<Genre>();
             }
 
             InitializeComponent();
@@ -50,14 +52,24 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages.DataEditPages
                     genre.Id = RandomIdGenerator.GeneratePushID();
                     genre.GenreName = GenreNameTextBox.Text;
                     FirebaseClientModel.client.Set("Genres/" + genre.Id, genre);
+                    MessageBox.Show("Успешно добавлен жанр.", "Успех");
+                    NavigationService.Navigate(new GenreViewPage());
                 }
                 else
                 {
-                    //редактирование
+                    genre.GenreName = GenreNameTextBox.Text;
+                    FirebaseClientModel.client.Set("Genres/" + genre.Id, genre);
+                    MessageBox.Show("Успешно изменен жанр.", "Успех");
+                    NavigationService.Navigate(new GenreViewPage());
                 }
 
             }
             else MessageBox.Show(err);
+        }
+
+        private void GoBackBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
         }
     }
 }

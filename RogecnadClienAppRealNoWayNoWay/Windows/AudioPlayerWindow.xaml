@@ -20,15 +20,37 @@
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                     <Button x:Name="playButton" Click="PlayButton_Click" Width="25" Height="25" Foreground="White" Background="{StaticResource ColorAccent}" BorderBrush="Transparent">
-                        <Image Source="/Resources/PlayButton.png" />
+                        <Image x:Name="imagePlayButton" Source="/Resources/PlayButton.png" />
                     </Button>
                     <Slider Name="audioSlider" IsSelectionRangeEnabled="True" Width="150" Value="0" VerticalAlignment="Center" ValueChanged="audioSlider_ValueChanged" />
 
                     <Button x:Name="volumeButton" Click="volumeButton_Click" Width="25" Height="30" Foreground="White" Background="Transparent" BorderBrush="Transparent">
+                        <Button.ContextMenu>
+                            <ContextMenu Name="cmVolume" Opened="OnOpened" Closed="OnClosed" Background="Black" StaysOpen="true">
+                                <MenuItem Width="30" x:Name="menuSlider" Background="Black">
+                                    <MenuItem.Template>
+                                        <ControlTemplate TargetType="{x:Type MenuItem}" >
+                                            <Frame Source="../Pages/ContextMenuPages/VolumeSliderView.xaml" />
+                                        </ControlTemplate>
+                                    </MenuItem.Template>
+                                </MenuItem>
+                            </ContextMenu>
+                        </Button.ContextMenu>
                         <Image Source="/Resources/VolumeButton.png" />
                     </Button>
 
                     <Button x:Name="moreButton" Click="moreButton_Click" Width="25" Height="30" Foreground="White" Background="Transparent" BorderBrush="Transparent">
+                        <Button.ContextMenu>
+                            <ContextMenu Name="cmPlaylist" Opened="OnOpened" Closed="OnClosed" Background="Black" StaysOpen="true">
+                                <MenuItem Width="250" x:Name="menuPlaylists" Background="Black">
+                                    <MenuItem.Template>
+                                        <ControlTemplate TargetType="{x:Type MenuItem}" >
+                                            <Frame Source="../Pages/ContextMenuPages/AddToPlaylistView.xaml" />
+                                        </ControlTemplate>
+                                    </MenuItem.Template>
+                                </MenuItem>
+                            </ContextMenu>
+                        </Button.ContextMenu>
                         <Image Source="/Resources/moreButton.png" />
                     </Button>
                 </StackPanel>

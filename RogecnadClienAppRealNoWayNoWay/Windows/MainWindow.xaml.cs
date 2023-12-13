@@ -37,7 +37,18 @@ namespace RogecnadClienAppRealNoWayNoWay
         public MainWindow()
         {
             InitializeComponent();
-
+            if (AppManager.currentUser.Id != null)
+            {
+                RegisterAndAuthorizeStack.Visibility = Visibility.Collapsed;
+                UserStack.Visibility = Visibility.Visible;
+                if (AppManager.currentUser.Role == "admin")
+                {
+                    ViewGenresButton.Visibility = Visibility.Visible;
+                    usernameTB.Text = "[Администратор] " + AppManager.currentUser.Login;
+                }
+                else
+                    usernameTB.Text = AppManager.currentUser.Login;
+            }
             GetTableData();
 
             timer = new DispatcherTimer();
@@ -47,6 +58,7 @@ namespace RogecnadClienAppRealNoWayNoWay
             AppManager.mainWindow = this;
             AppManager.mainFrame = this.MainFrame;
             AppManager.mainFrame.Navigate(new MainPage());
+            AppManager.audioWindow = new AudioPlayerWindow();
             panelWidth = sidePanel.Width;
         }
 
@@ -124,6 +136,7 @@ namespace RogecnadClienAppRealNoWayNoWay
 
         private void GetTableData()
         {
+            playlistsData.Clear();
             List<Playlist> playlists = new List<Playlist>();
             var result = FirebaseClientModel.client.Get("Playlists");
             Dictionary<string, Playlist> getTracks = result.ResultAs<Dictionary<string, Playlist>>();
@@ -159,6 +172,30 @@ namespace RogecnadClienAppRealNoWayNoWay
         {
             var a = ((sender as ListViewItem).DataContext as PlaylistDataGetter).playlist.Id;
             AppManager.mainFrame.Navigate(new PlaylistViewPage(a));
+        }
+
+        private void RefreshPlaylistButton_Click(object sender, RoutedEventArgs e)
+        {
+            GetTableData();
+            playlistsListView.Items.Refresh();
+        }
+
+        private void logOutButton_Click(object sender, RoutedEventArgs e)
+        {
+            AppManager.mainWindow.Close();
+            AppManager.mainWindow = null;
+            AppManager.mainWindow = new MainWindow();
+            AppManager.mainWindow.Show();
+        }
+
+        private void MyChannelBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ViewGenresButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new GenreViewPage());
         }
     }
 }

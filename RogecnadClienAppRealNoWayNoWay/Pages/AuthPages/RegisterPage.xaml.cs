@@ -63,12 +63,19 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages
                 return;
             }
 
-            string status = RegisterLoginModel.Register(email, password, username).Result;
-            MessageBox.Show(status);
-            if (status == "Учетная запись успешно создана")
+            try
             {
-                NavigationService.Navigate(new LoginPage());
+                RegisterLoginModel.Register(email, password, username);
+                MessageBox.Show("Регистрация успешно выполнена");
             }
+            catch
+            {
+                MessageBox.Show("Аккаунт с данной почтой уже существует!");
+            }
+
+
+            NavigationService.Navigate(new LoginPage());
+            
         }
 
         bool IsCorrectPassword(string text)

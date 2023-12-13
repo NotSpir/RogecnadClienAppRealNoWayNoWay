@@ -34,30 +34,30 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages
         }
 
 
-        private void LogInButton_Click(object sender, RoutedEventArgs e)
+        private async void LogInButton_Click(object sender, RoutedEventArgs e)
         {
             string email = EmailTextBox.Text;
             string password = PasswordBoxPassword.Password;
             try
             {
-                AppManager.token = RegisterLoginModel.SignInAsync(email, password).Result;
+                await RegisterLoginModel.SignInAsync(email, password);
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Пользователь не найден");
+                return;
             }
             if (AppManager.token == null)
             {
                 MessageBox.Show("Пользователь не найден");
+                return;
             }
-            else
-            {
-                MessageBox.Show("Вы вошли в учетную запись");
-                AppManager.mainWindow.Show();
-                AppManager.authWindow.Hide();
-                
-            }
-                
+
+            MessageBox.Show("Вы вошли в учетную запись");
+            AppManager.mainWindow = null;
+            AppManager.mainWindow = new MainWindow();
+            AppManager.mainWindow.Show();
+            AppManager.authWindow.Hide();
         }
     }
 }
