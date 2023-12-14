@@ -54,5 +54,11 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages
             AppManager.mainWindow.Show();
             AppManager.authWindow.Hide();
         }
+
+        private void BactToMainBtn_Click(object sender, RoutedEventArgs e)
+        {
+            AppManager.authWindow.Hide();
+            AppManager.mainWindow.Show();
+        }
     }
 }

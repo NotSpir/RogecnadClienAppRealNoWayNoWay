@@ -110,5 +110,11 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages
         {
             PasswordBoxPass.Password = PasswordTextBox.Text;
         }
+
+        private void BackToMainBtn_Click(object sender, RoutedEventArgs e)
+        {
+            AppManager.authWindow.Hide();
+            AppManager.mainWindow.Show();
+        }
     }
 }

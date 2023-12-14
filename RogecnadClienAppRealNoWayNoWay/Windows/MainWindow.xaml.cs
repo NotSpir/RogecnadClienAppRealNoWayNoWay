@@ -49,6 +49,10 @@ namespace RogecnadClienAppRealNoWayNoWay
                 else
                     usernameTB.Text = AppManager.currentUser.Login;
             }
+            if (AppManager.currentUser.Id == null)
+            {
+                PlaylistStack.Visibility = Visibility.Collapsed;
+            }
             AppManager.mainWindow = this;
             GetTableData();
 
@@ -135,7 +139,7 @@ namespace RogecnadClienAppRealNoWayNoWay
             AppManager.mainFrame.Navigate(new MainPage());
         }
 
-        private void GetTableData()
+        public void GetTableData()
         {
             playlistsData.Clear();
             List<Playlist> playlists = new List<Playlist>();

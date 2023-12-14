@@ -5,22 +5,22 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:RogecnadClienAppRealNoWayNoWay.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="1000" d:DesignWidth="1800"
+      d:DesignHeight="800" d:DesignWidth="1800"
       Title="RegisterPage">
 
     <Grid>
-        <Grid Width="350" Height="850" Background="{StaticResource ColorBackgroundFade}" Margin="0 0 60 40" />
-        <Grid Width="350" Height="850" Background="{StaticResource ColorAccentBackground}">
+        <Grid Width="350" Height="800" Background="{StaticResource ColorBackgroundFade}" Margin="0 0 60 40" />
+        <Grid Width="350" Height="800" Background="{StaticResource ColorAccentBackground}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="20" />
-                <RowDefinition Height="660" />
+                <RowDefinition Height="550" />
                 <RowDefinition Height="50" />
                 <RowDefinition Height="80" />
             </Grid.RowDefinitions>
 
             <StackPanel Orientation="Horizontal">
-                <Button Background="Transparent" BorderBrush="Transparent" Width="50" Height="50" HorizontalAlignment="Left" Margin="20 0 0 0">
+                <Button Background="Transparent" BorderBrush="Transparent" Width="50" Height="50" Name="BackToMainBtn" Click="BackToMainBtn_Click" HorizontalAlignment="Left" Margin="20 0 0 0">
                     <Image Source="/Resources/ArrowLeft.png" />
                 </Button>
                 <TextBlock Text="Регистрация" Margin="15 0 0 0" Foreground="White" FontSize="32" />

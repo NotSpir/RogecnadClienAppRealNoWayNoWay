@@ -17,6 +17,7 @@ using System.Windows.Shapes;
 using RogecnadClienAppRealNoWayNoWay.Models.DataModels;
 using System.Media;
 using System.IO;
+using RogecnadClienAppRealNoWayNoWay.Pages.DataViewPages;
 
 namespace RogecnadClienAppRealNoWayNoWay.Pages
 {
@@ -52,26 +53,6 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages
         private async void PlayButton_Click(object sender, RoutedEventArgs e)
         {
             AppManager.audioWindow.ReloadPlayer(((sender as Button).DataContext as SoundTrack).Id);
-            /*string trackID = ((sender as Button).DataContext as SoundTrack).Id;
-            string trackByteString = await GetTrack(trackID);
-            byte[] bytes = Convert.FromBase64String(trackByteString);
-            string fileName = directory + @"\костыль.mp3";
-
-            try
-            {
-                if (File.Exists(fileName))
-                {
-                    File.Delete(fileName);
-                }
-                File.WriteAllBytes(fileName, bytes);
-            }
-            catch
-            {
-                MessageBox.Show("Ошибка при загрузке трека", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-            AudioPlayer.soundPlayer = AudioPlayer.InitializePlayer(fileName);
-            AudioPlayer.Play(AudioPlayer.soundPlayer, new TimeSpan(0));*/
         }
 
         private void volumeButton_Click(object sender, RoutedEventArgs e)
@@ -86,7 +67,7 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages
 
         private void ChannelBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new ChannelContentView(((sender as Button).DataContext as SoundTrack).UploaderId));
         }
 
         private void GetTableData()
@@ -110,23 +91,6 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages
         {
             var result = FirebaseClientModel.client.Get("TrackFiles/" + ID);
             return result.ResultAs<PlayingTracks>().trackBytes;
-        }
-
-        private async void ChangeTimeValuesAsync()
-        {
-            System.Threading.Thread thread = new System.Threading.Thread(async delegate ()
-            {
-                try
-                {
-                    while (true)
-                        while (IsPlaying)
-                        {
-
-                        }
-                }
-                catch { }
-            });
-            thread.Start();
         }
 
         private async void moreButton_Click(object sender, RoutedEventArgs e)

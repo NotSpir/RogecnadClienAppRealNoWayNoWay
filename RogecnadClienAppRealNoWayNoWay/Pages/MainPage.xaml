@@ -21,7 +21,7 @@
         
         
         <Border BorderBrush="White" BorderThickness="0 0 0 5">
-            <TextBlock Text="Композиции от наших авторов" FontSize="40" TextAlignment="Center" FontWeight="Bold" Foreground="White"/>
+            <TextBlock Text="Главная страница" FontSize="40" TextAlignment="Center" FontWeight="Bold" Foreground="White"/>
         </Border>
         
         <ListView Grid.Row="1" Name="LViewMainSongs" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center" Background="Transparent">

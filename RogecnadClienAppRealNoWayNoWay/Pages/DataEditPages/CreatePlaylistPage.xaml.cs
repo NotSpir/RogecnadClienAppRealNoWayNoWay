@@ -47,6 +47,7 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages.DataEditPages
                     playlist.CreatorId = AppManager.currentUser.Id;
                     FirebaseClientModel.client.Set("Playlists/" + playlist.Id, playlist);
                     MessageBox.Show("Плейлист создан", "Успех", MessageBoxButton.OK, MessageBoxImage.None);
+                    NavigationService.Navigate(new PlaylistViewPage(playlist.Id));
                 }
 
             }

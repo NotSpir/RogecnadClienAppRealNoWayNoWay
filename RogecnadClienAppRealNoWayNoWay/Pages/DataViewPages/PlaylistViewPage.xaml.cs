@@ -136,7 +136,16 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages
 
         private void DeleteBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            if (MessageBox.Show($"Вы точно хотите удалить данный плейлист?", "Внимание",
+                MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+            FirebaseClientModel.client.Delete("Playlists/" + activePlaylist.Id);
+            FirebaseClientModel.client.Delete("TracksPlaylist/" + activePlaylist.Id);
+            AppManager.mainWindow.GetTableData();
+            AppManager.mainWindow.playlistsListView.Items.Refresh();
+            NavigationService.Navigate(new MainPage());
+            }
+            
         }
     }
 }

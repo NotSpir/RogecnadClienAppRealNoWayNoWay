@@ -361,15 +361,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\DataEditPages\AlbumUploadPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Pages\DataEditPages\CreatePlaylistPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\DataEditPages\GenreAddEditPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\DataEditPages\SongEditPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\DataViewPages\ChannelContentView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -439,14 +443,17 @@
     <Compile Include="Pages\ContextMenuPages\VolumeSliderView.xaml.cs">
       <DependentUpon>VolumeSliderView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\DataEditPages\AlbumUploadPage.xaml.cs">
-      <DependentUpon>AlbumUploadPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Pages\DataEditPages\CreatePlaylistPage.xaml.cs">
       <DependentUpon>CreatePlaylistPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\DataEditPages\GenreAddEditPage.xaml.cs">
       <DependentUpon>GenreAddEditPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\DataEditPages\SongEditPage.xaml.cs">
+      <DependentUpon>SongEditPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\DataViewPages\ChannelContentView.xaml.cs">
+      <DependentUpon>ChannelContentView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\DataViewPages\GenreViewPage.xaml.cs">
       <DependentUpon>GenreViewPage.xaml</DependentUpon>
