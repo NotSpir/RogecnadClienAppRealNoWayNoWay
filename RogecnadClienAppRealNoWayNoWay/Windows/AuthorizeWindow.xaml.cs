@@ -25,5 +25,12 @@ namespace RogecnadClienAppRealNoWayNoWay.Windows
             InitializeComponent();
             AppManager.authWindow = this;
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            e.Cancel = true;
+            AppManager.authWindow.Hide();
+            AppManager.mainWindow.Show();
+        }
     }
 }
