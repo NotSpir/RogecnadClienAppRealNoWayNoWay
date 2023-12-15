@@ -40,7 +40,7 @@ namespace RogecnadClienAppRealNoWayNoWay.Models
 
         public static void changeTime(MediaPlayer player, int seconds)
         {
-            player.Position = new TimeSpan(seconds * 10);
+            player.Position = new TimeSpan(seconds);
         }
 
         public static void changeVolume(MediaPlayer player, double value)

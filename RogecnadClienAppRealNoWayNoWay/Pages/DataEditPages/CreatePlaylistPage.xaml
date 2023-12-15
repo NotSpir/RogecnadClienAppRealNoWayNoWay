@@ -22,7 +22,7 @@
                     <Button Background="Transparent" BorderBrush="Transparent" Width="50" Height="50" HorizontalAlignment="Left" Margin="20 0 0 0">
                         <Image Source="/Resources/ArrowLeft.png" />
                     </Button>
-                    <TextBlock Text="Жанр" Margin="15 0 0 0" Foreground="White" FontSize="32" />
+                    <TextBlock Text="Плейлист" Margin="15 0 0 0" Foreground="White" FontSize="32" />
                 </StackPanel>
 
                 <Line Stretch="Fill" Stroke="{StaticResource ColorAccent}" Grid.Row="1" StrokeThickness="6" X2="1" Width="310"/>

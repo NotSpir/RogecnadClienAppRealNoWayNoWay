@@ -5,6 +5,7 @@ using RogecnadClienAppRealNoWayNoWay.Models.DataModels;
 using RogecnadClienAppRealNoWayNoWay.Pages.DataViewPages;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,12 +28,14 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages.DataEditPages
     {
         SoundTrack soundTrack = new SoundTrack();
         List<Genre> genreList = new List<Genre>();
+        string coverImageFilePath = "";
         public SongEditPage(string trackID)
         {
             InitializeComponent();
             var result = FirebaseClientModel.client.Get("Soundtracks/" + trackID);
             soundTrack = result.ResultAs<SoundTrack>();
             TitleTextBox.Text = soundTrack.TrackName;
+            imageCover.Source = soundTrack.GetCoverImage;
             GetGenreData();
             CheckReady();
         }
@@ -44,6 +47,12 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages.DataEditPages
                 soundTrack.TrackName = TitleTextBox.Text;
                 string genreID = genreList.Where(x => x.GenreName == GenreComboBox.Text).FirstOrDefault().Id;
                 soundTrack.GenreId = genreID;
+                if (coverImageFilePath != "")
+                {
+                    Byte[] bytesCover = File.ReadAllBytes(coverImageFilePath);
+                    String fileCover = Convert.ToBase64String(bytesCover);
+                    soundTrack.TrackCoverBytes = fileCover;
+                }
 
                 FirebaseClientModel.client.Set("Soundtracks/" + soundTrack.Id, soundTrack);
                 MessageBox.Show("Трек загружен");
@@ -86,6 +95,36 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages.DataEditPages
         private void GoBackBtn_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.GoBack();
+        }
+
+        private void uploadCoverButton_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog { Filter = "Image | *.png; *.jpg; *.jpeg" };
+            if (ofd.ShowDialog() == true)
+            {
+                coverImageFilePath = ofd.FileName;
+                imageCover.Source = new BitmapImage(new Uri(coverImageFilePath));
+                CheckReady();
+            }
+        }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show($"Вы точно хотите удалить трек?", "Внимание",
+                MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    FirebaseClientModel.client.Delete("Soundtracks/" + soundTrack.Id);
+                    FirebaseClientModel.client.Delete("TrackFiles/" + soundTrack.Id);
+                    MessageBox.Show("Трек удален!");
+                    NavigationService.Navigate(new ChannelContentView(AppManager.currentUser.Id));
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString(), "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
         }
     }
 }

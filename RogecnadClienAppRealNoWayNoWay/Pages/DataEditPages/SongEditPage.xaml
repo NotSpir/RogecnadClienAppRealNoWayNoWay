@@ -5,17 +5,17 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:RogecnadClienAppRealNoWayNoWay.Pages.DataEditPages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="700" d:DesignWidth="800"
       Title="SongEditPage">
 
     <Grid>
-        <Border Width="350" Height="400" Background="{StaticResource ColorBackgroundFade}" Margin="0 0 60 40" CornerRadius="45" />
-        <Border Width="350" Height="400" Background="{StaticResource ColorAccentBackground}" CornerRadius="45">
+        <Border Width="350" Height="700" Background="{StaticResource ColorBackgroundFade}" Margin="0 0 60 40" CornerRadius="45" />
+        <Border Width="350" Height="700" Background="{StaticResource ColorAccentBackground}" CornerRadius="45">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="20" />
-                    <RowDefinition Height="250" />
+                    <RowDefinition Height="500" />
                     <RowDefinition Height="50" />
                     <RowDefinition Height="80" />
                 </Grid.RowDefinitions>
@@ -24,7 +24,7 @@
                     <Button Background="Transparent" Name="GoBackBtn" Click="GoBackBtn_Click" BorderBrush="Transparent" Width="50" Height="50" HorizontalAlignment="Left" Margin="20 0 0 0">
                         <Image Source="/Resources/ArrowLeft.png" />
                     </Button>
-                    <TextBlock Text="Загрузка" Margin="15 0 0 0" Foreground="White" FontSize="32" />
+                    <TextBlock Text="Изменение" Margin="15 0 0 0" Foreground="White" FontSize="32" />
                 </StackPanel>
 
                 <Line Stretch="Fill" Stroke="{StaticResource ColorAccent}" Grid.Row="1" StrokeThickness="6" X2="1" Width="310"/>
@@ -38,8 +38,9 @@
                         <TextBlock Text="Жанр" Foreground="White" Width="250" TextAlignment="Left" Height="30" FontSize="22"/>
                         <ComboBox Background="{StaticResource ColorPrimaryBackground}" Width="250" Name="GenreComboBox" DisplayMemberPath="GenreName" Height="40" Foreground="Black" FontSize="18" SelectionChanged="GenreComboBox_SelectionChanged" />
                     </StackPanel>
-
-                    <Button IsEnabled="False" Height="50" Width="250" Background="{StaticResource ColorAccent}" Margin="0 30 0 0" Content="Загрузить" Foreground="White" FontSize="26" Name="UploadButton" Click="UploadButton_Click">
+                    <Button Background="{StaticResource ColorAccent}" Content="Загрузить изображение" Width="250" Name="uploadCoverButton" Click="uploadCoverButton_Click" Height="40" Foreground="White" FontSize="18" />
+                    <Image Width="200" Height="200" Margin="10" Name="imageCover"/>
+                    <Button IsEnabled="False" Height="50" Width="250" Background="{StaticResource ColorAccent}" Margin="0 30 0 0" Content="Изменить" Foreground="White" FontSize="26" Name="UploadButton" Click="UploadButton_Click">
                         <Button.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="15"></Setter>
@@ -49,6 +50,14 @@
                 </StackPanel>
 
                 <Line Stretch="Fill" Stroke="{StaticResource ColorAccent}" Grid.Row="3" StrokeThickness="6" X2="1" Width="310"/>
+
+                <Button  Grid.Row="4" IsEnabled="True" Height="50" Width="250" Background="{StaticResource ColorAccent}" Margin="0 0 0 0" Content="Удалить трек" Foreground="White" FontSize="26" Name="DeleteButton" Click="DeleteButton_Click">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="15"></Setter>
+                        </Style>
+                    </Button.Resources>
+                </Button>
             </Grid>
         </Border>
 

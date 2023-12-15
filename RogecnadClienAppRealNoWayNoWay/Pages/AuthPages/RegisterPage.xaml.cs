@@ -37,7 +37,7 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages
         {
             string username = LoginTextBox.Text;
             string email = EmailTextBox.Text;
-            string password = PasswordBoxPass.Password;
+            string password = PasswordTextBox.Text;
             string err = "";
             if (string.IsNullOrWhiteSpace(username))
             {
@@ -89,6 +89,7 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages
         {
             if (PasswordTextBox.Visibility == Visibility.Visible)
             {
+                PasswordBoxPass.Password = PasswordTextBox.Text;
                 PasswordTextBox.Visibility = Visibility.Collapsed;
                 PasswordBoxPass.Visibility = Visibility.Visible;
                 PasswordHideShowImage.Source = new BitmapImage(new Uri(@"/Resources/ClosedEyeIcon.png", UriKind.Relative));
@@ -108,7 +109,6 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages
 
         private void PasswordTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            PasswordBoxPass.Password = PasswordTextBox.Text;
         }
 
         private void BackToMainBtn_Click(object sender, RoutedEventArgs e)

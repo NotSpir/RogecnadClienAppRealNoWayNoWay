@@ -13,6 +13,7 @@ using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -22,6 +23,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace RogecnadClienAppRealNoWayNoWay.Pages
 {
@@ -32,6 +34,7 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages
     {
         TimeSpan duration = new TimeSpan();
         TimeSpan currentTime = new TimeSpan(0);
+        DispatcherTimer timer;
 
         string mediaFilePath = "";
         string coverImageFilePath = "";
@@ -40,9 +43,14 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages
         SoundTrack soundTrack = new SoundTrack();
         PlayingTracks tracks = new PlayingTracks();
         List<Genre> genreList = new List<Genre>();
+
+
         public SongAddEditPage()
         {
             InitializeComponent();
+            timer = new DispatcherTimer();
+            timer.Interval = new TimeSpan(0, 0, 0, 0, 10);
+            timer.Tick += Timer_Tick;
             GetGenreData();
             CheckReady();
         }
@@ -115,11 +123,6 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages
             }
         }
 
-        private void ExitCompactBtn_Click(object sender, RoutedEventArgs e)
-        {
-            //It literally does nothing and is not planned.
-        }
-
         private async void PlayButton_Click(object sender, RoutedEventArgs e)
         {
             if (AudioPlayer.soundPlayer.Position >= duration)
@@ -134,15 +137,16 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages
                 currentTime = AudioPlayer.StripMilliseconds(AudioPlayer.soundPlayer.Position);
                 timeDisplayTextBlock.Text = $"{currentTime}/{duration}";
                 AudioPlayer.Stop(AudioPlayer.soundPlayer);
+                timer.Stop();
             }
             else
             {
                 IsPlaying = true;
                 imagePlayButton.Source = new BitmapImage(new Uri(@"/Resources/StopButton.png", UriKind.Relative));
                 AudioPlayer.Play(AudioPlayer.soundPlayer, currentTime);
-                ChangeTimeValuesAsync();
+                timer.Start();
             }
-            
+
         }
 
         private void GetGenreData()
@@ -162,24 +166,6 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages
             
          }
 
-        private async void ChangeTimeValuesAsync()
-        {
-            System.Threading.Thread thread = new System.Threading.Thread(async delegate ()
-            {
-                try
-                {
-                    while (true)
-                    while (IsPlaying)
-                    {
-                            currentTime = AudioPlayer.StripMilliseconds(AudioPlayer.soundPlayer.Position);
-                            timeDisplayTextBlock.Text = $"{currentTime}/{duration}";
-                    }
-                }
-                catch { }
-            });
-            thread.Start();
-        }
-
         private void CheckReady()
         {
             if (!string.IsNullOrWhiteSpace(TitleTextBox.Text) && !string.IsNullOrWhiteSpace(GenreComboBox.Text) && !string.IsNullOrWhiteSpace(mediaFilePath) && !string.IsNullOrWhiteSpace(coverImageFilePath))
@@ -198,6 +184,21 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages
         private void GoBackBtn_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.GoBack();
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+
+            if (IsPlaying)
+            {
+                audioSlider.Value = AudioPlayer.soundPlayer.Position.TotalSeconds;
+                currentTime = AudioPlayer.StripMilliseconds(AudioPlayer.soundPlayer.Position);
+                timeDisplayTextBlock.Text = $"{currentTime}/{duration}";
+                if (audioSlider.Value >= duration.TotalSeconds)
+                {
+                    AudioPlayer.soundPlayer.Position = new TimeSpan(0);
+                }
+            }
         }
     }
 }

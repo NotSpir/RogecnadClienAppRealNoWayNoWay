@@ -13,7 +13,7 @@
             <RowDefinition Height="70"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+        <StackPanel Background="{StaticResource ColorPrimaryBackground}" Orientation="Horizontal" HorizontalAlignment="Center">
             <StackPanel>
                 <TextBlock Foreground="White" Text="Жанры" TextAlignment="Center" FontSize="16"/>
                 <ComboBox Name="cbGenres" Width="200" Height="40" DisplayMemberPath="GenreName" SelectionChanged="cbGenres_SelectionChanged" />

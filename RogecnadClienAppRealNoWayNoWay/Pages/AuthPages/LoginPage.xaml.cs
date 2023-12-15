@@ -37,7 +37,7 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages
         private async void LogInButton_Click(object sender, RoutedEventArgs e)
         {
             string email = EmailTextBox.Text;
-            string password = PasswordBoxPassword.Password;
+            string password = PasswordTextBox.Text;
             try
             {
                 await RegisterLoginModel.SignInAsync(email, password);
@@ -59,6 +59,33 @@ namespace RogecnadClienAppRealNoWayNoWay.Pages
         {
             AppManager.authWindow.Hide();
             AppManager.mainWindow.Show();
+        }
+
+        private void PasswordBoxPass_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            PasswordTextBox.Text = PasswordBoxPass.Password;
+        }
+
+        private void PasswordTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            
+        }
+
+        private void DisplayPasswordButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (PasswordTextBox.Visibility == Visibility.Visible)
+            {
+                PasswordBoxPass.Password = PasswordTextBox.Text;
+                PasswordTextBox.Visibility = Visibility.Collapsed;
+                PasswordBoxPass.Visibility = Visibility.Visible;
+                PasswordHideShowImage.Source = new BitmapImage(new Uri(@"/Resources/ClosedEyeIcon.png", UriKind.Relative));
+            }
+            else if (PasswordTextBox.Visibility == Visibility.Collapsed)
+            {
+                PasswordTextBox.Visibility = Visibility.Visible;
+                PasswordBoxPass.Visibility = Visibility.Collapsed;
+                PasswordHideShowImage.Source = new BitmapImage(new Uri(@"/Resources/EyeIcon.png", UriKind.Relative));
+            }
         }
     }
 }

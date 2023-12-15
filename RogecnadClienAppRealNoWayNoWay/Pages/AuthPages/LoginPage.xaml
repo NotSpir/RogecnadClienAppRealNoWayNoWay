@@ -34,28 +34,20 @@
                     <TextBlock Text="Электронная почта" Foreground="White" Width="250" TextAlignment="Left" Height="30" FontSize="22"/>
                     <TextBox Background="{StaticResource ColorPrimaryBackground}" Width="250" Height="40" Foreground="White" FontSize="18" Name="EmailTextBox" />
                 </StackPanel>
-                <StackPanel>
-                    <TextBlock Text="Пароль" Foreground="White" Width="250" TextAlignment="Left" Height="30" FontSize="22"/>
-                    <StackPanel Orientation="Horizontal">
-                        <PasswordBox Margin="50 0 0 0" Background="{StaticResource ColorPrimaryBackground}" Width="250" Height="40" Foreground="White" FontSize="18" Name="PasswordBoxPassword"/>
-                        <Button Background="Transparent" BorderBrush="Transparent">
-                            <Image Source="/Resources/ClosedEyeIcon.png" Width="40"/>
-                        </Button>
+                    <StackPanel>
+                        <TextBlock Text="Пароль" Foreground="White" Width="250" TextAlignment="Left" Height="30" FontSize="22"/>
+                        <StackPanel Orientation="Horizontal">
+                            <PasswordBox Margin="50 0 0 40" Visibility="Visible" Background="{StaticResource ColorPrimaryBackground}" Name="PasswordBoxPass" 
+                                     Width="250" Height="40" Foreground="White" FontSize="18" PasswordChanged="PasswordBoxPass_PasswordChanged"/>
+                            <TextBox Margin="50 0 0 40" Visibility="Collapsed" Background="{StaticResource ColorPrimaryBackground}" Name="PasswordTextBox" 
+                                 Width="250" Height="40" Foreground="White" FontSize="18" TextChanged="PasswordTextBox_TextChanged"/>
+                            <Button  Margin="0 0 0 40" Background="Transparent" BorderBrush="Transparent" Name="DisplayPasswordButton" Click="DisplayPasswordButton_Click">
+                                <Image Source="/Resources/ClosedEyeIcon.png" Width="40" Name="PasswordHideShowImage"/>
+                            </Button>
+                        </StackPanel>
                     </StackPanel>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="50 40 0 0" HorizontalAlignment="Left">
-                    <ToggleButton Background="Gray" Width="60" Height="30" >
-                        <ToggleButton.Resources>
-                            <Style TargetType="Border">
-                                <Setter Property="CornerRadius" Value="15"></Setter>
-                            </Style>
-                        </ToggleButton.Resources>
-                    </ToggleButton>
 
-                    <TextBlock Text="Запомнить меня?" Foreground="White" FontSize="22"/>
-                </StackPanel>
-
-                <Button Height="50" Width="250" Background="{StaticResource ColorAccent}" Margin="0 30 0 0" Content="Войти" Foreground="White" FontSize="26" Name="LogInButton" Click="LogInButton_Click">
+                    <Button Height="50" Width="250" Background="{StaticResource ColorAccent}" Margin="0 30 0 0" Content="Войти" Foreground="White" FontSize="26" Name="LogInButton" Click="LogInButton_Click">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="15"></Setter>
@@ -63,9 +55,6 @@
                     </Button.Resources>
                 </Button>
 
-                <Button Background="Transparent" BorderBrush="Transparent" Margin="0 10 0 0">
-                    <TextBlock Foreground="White" Width="180" TextAlignment="Center" Height="50" FontSize="24" TextDecorations="Underline">Забыли пароль?</TextBlock>
-                </Button>
             </StackPanel>
 
             <Line Stretch="Fill" Stroke="{StaticResource ColorAccent}" Grid.Row="3" StrokeThickness="6" X2="1" Width="310"/>

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:RogecnadClienAppRealNoWayNoWay"
         mc:Ignorable="d" Closing="Window_Closing"
         WindowStartupLocation="CenterScreen"
-        Title="MainWindow" Height="1000" Width="1800">
+        Title="Клиент аудио-сервиса" Height="1000" Width="1800">
     <Grid Background="{StaticResource ColorPrimaryBackground}">
         <Grid.RowDefinitions>
             <RowDefinition Height="75" />
@@ -30,7 +30,7 @@
                     <TextBlock Background="Transparent" Foreground="White" Width="100" Height="50" TextAlignment="Center"  FontSize="24">Главная</TextBlock>
                 </Button>
                 
-                <TextBox Name="srcBarTextBox" Width="500" Margin="10 0 0 0" Height="40" Background="{StaticResource ColorAccentBackground}" Foreground="White" />
+                <TextBox Name="srcBarTextBox" FontSize="22" Width="500" Margin="10 0 0 0" Height="40" Background="{StaticResource ColorAccentBackground}" Foreground="White" />
                 <Button Background="Transparent" BorderBrush="Transparent" Margin="25 0" Name="SearchButton" Click="SearchButton_Click">
                     <TextBlock Background="Transparent" Foreground="White" Width="100" Height="50" TextAlignment="Center"  FontSize="24">Поиск</TextBlock>
                 </Button>

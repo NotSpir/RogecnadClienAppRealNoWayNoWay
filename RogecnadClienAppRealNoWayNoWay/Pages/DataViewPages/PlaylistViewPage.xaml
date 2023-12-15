@@ -14,7 +14,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Column="0">
+        <Grid Background="{StaticResource ColorPrimaryBackground}" Grid.Column="0">
             <StackPanel VerticalAlignment="Top">
                 <Image Name="playlistFirstCover" Width="250" Height="250"/>
                 <TextBlock Text="PlaylistName" Foreground="White" Name="playlistNameTextBox" FontSize="32" />

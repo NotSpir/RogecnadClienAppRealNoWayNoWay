@@ -65,13 +65,7 @@
                 </Button>
             </StackPanel>
 
-            <Line Stretch="Fill" Stroke="{StaticResource ColorAccent}" Grid.Row="3" StrokeThickness="6" X2="1" Width="310"/>
-
-            <StackPanel Orientation="Horizontal" Grid.Row="4" HorizontalAlignment="Center">
-                <Button Background="Transparent" BorderBrush="Transparent" Margin="0" Name="ExitCompactBtn" Click="ExitCompactBtn_Click">
-                    <TextBlock Foreground="White" Width="300" TextAlignment="Center" Height="50" FontSize="18" TextDecorations="Underline">Выйти из компактного режима</TextBlock>
-                </Button>
-            </StackPanel>
+                <Line Stretch="Fill" Stroke="{StaticResource ColorAccent}" Grid.Row="3" StrokeThickness="6" X2="1" Width="310"/>
             </Grid>
         </Border>
             

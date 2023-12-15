@@ -14,7 +14,7 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Музыка, загруженная " Foreground="White" FontSize="32" Name="UploadedByTextBlock" />
+        <TextBlock Background="{StaticResource ColorPrimaryBackground}" Text="Музыка, загруженная " Foreground="White" FontSize="32" Name="UploadedByTextBlock" />
         <ListView Grid.Row="1" Name="LViewMainSongs" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center" Background="Transparent">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>

@@ -50,14 +50,8 @@
                     </StackPanel>
                 </StackPanel>
 
-                <StackPanel Margin="0">
-                    <CheckBox Foreground="White" Width="250" Height="120" FontSize="22">
-                        <TextBlock Text="Я прочитал и согласен с Политикой конфиденциальности RogeCnad" FontSize="14" TextWrapping="Wrap" />
-                    </CheckBox>
-                    <TextBlock Text="Нажимая «Зарегистрироваться», Вы принимаете Условия пользования RogeCnad" Margin="0 -60 0 0" Width="250" Foreground="White" FontSize="14" TextWrapping="Wrap" />
-                </StackPanel>
 
-                <Button Height="50" Width="250" Background="{StaticResource ColorAccent}" Margin="0 30 0 0" Content="Войти" Foreground="White" FontSize="26" Name="RegisterButton" Click="RegisterButton_Click">
+                <Button Height="50" Width="250" Background="{StaticResource ColorAccent}" Margin="0 30 0 0" Content="Создать" Foreground="White" FontSize="26" Name="RegisterButton" Click="RegisterButton_Click">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="15"></Setter>
